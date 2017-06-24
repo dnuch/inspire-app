@@ -1,0 +1,39 @@
+<ion-header>
+    <link rel="stylesheet" type="text/scss" href="/reddits.scss">
+    <ion-navbar color="primary">
+        <ion-title>
+            LifeTips
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Category</ion-label>
+            <ion-select (ionChange)="changeCategory()" [(ngModel)]="category" name="category">
+                <ion-option value="LifeProTips">LifeProTips</ion-option>
+                <ion-option value="GetMotivated">GetMotivated</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-list text-wrap>
+        <button ion-item *ngFor="let item of items" (click)="viewItem(item.data)">
+            <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
+                <img src="{{item.data.thumbnail}}">
+            </ion-thumbnail>
+            <p class="app-font-25">
+                {{item.data.title}}
+            </p>
+            <p>
+                <ion-icon name="thumbs-up">
+                    {{item.data.score}}
+                </ion-icon>
+                &nbsp;&nbsp;
+                <ion-icon name="chatboxes">
+                    {{item.data.num_comments}}
+                </ion-icon>
+            </p>
+        </button>
+    </ion-list>
+</ion-content>

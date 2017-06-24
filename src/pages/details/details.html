@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            {{item.title}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <div *ngIf="item.thumbnail!='self' && !isObject(item.preview.images[0].variants.gif);then isImg"></div>
+        <div *ngIf="item.thumbnail!='self' && isObject(item.preview.images[0].variants.gif);then isGif"></div>
+        <ng-template #isImg><img src="{{item.preview.images[0].source.url}}"/></ng-template>
+        <ng-template #isGif><img src="{{item.preview.images[0].variants.gif.source.url}}"/></ng-template>
+        <ion-card-content>
+            <ion-card-title>
+                {{item.title}}
+            </ion-card-title>
+            <ion-card-content>
+                <div [innerHTML]="item.selftext"></div>
+            </ion-card-content>
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="person" item-left></ion-icon>
+                    Author
+                    <ion-note item-right>
+                        {{item.author}}
+                    </ion-note>
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="thumbs-up" item-left></ion-icon>
+                    Likes
+                    <ion-note item-right>
+                        {{item.score}}
+                    </ion-note>
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="chatboxes" item-left></ion-icon>
+                    Comments
+                    <ion-note item-right>
+                        {{item.num_comments}}
+                    </ion-note>
+                </ion-item>
+            </ion-list>
+            <a ion-button block target="_blank" href="http://reddit.com/{{item.permalink}}">Website</a>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+
+
