@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { RedditsPage } from '../pages/reddits/reddits';
+import { TweetsPage } from '../pages/tweets/tweets';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DetailsPage } from '../pages/details/details';
@@ -18,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AboutPage,
     RedditsPage,
+    TweetsPage,
     DetailsPage,
     SettingsPage,
     TabsPage
@@ -32,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AboutPage,
     RedditsPage,
+    TweetsPage,
     DetailsPage,
     SettingsPage,
     TabsPage

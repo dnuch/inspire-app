@@ -5,10 +5,9 @@ import 'rxjs/Rx';
 //Uses Reddit's subreddit API to retrieve posts
 @Injectable()
 export class RedditService {
-    http: any;
     baseUrl: string;
     
-    constructor(http: Http) {
+    constructor(public http: Http) {
         this.http = http;
         this.baseUrl = 'https://www.reddit.com/r/';
     }

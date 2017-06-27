@@ -8,10 +8,8 @@
 
 <ion-content padding>
     <ion-card>
-        <div *ngIf="item.thumbnail!='self' && !isObject(item.preview.images[0].variants.gif);then isImg"></div>
-        <div *ngIf="item.thumbnail!='self' && isObject(item.preview.images[0].variants.gif);then isGif"></div>
-        <ng-template #isImg><img src="{{item.preview.images[0].source.url}}"/></ng-template>
-        <ng-template #isGif><img src="{{item.preview.images[0].variants.gif.source.url}}"/></ng-template>
+        <img *ngIf="item.thumbnail!='self' && !isObject(item.preview.images[0].variants.gif)" src="{{item.preview.images[0].source.url}}">
+        <img *ngIf="item.thumbnail!='self' && isObject(item.preview.images[0].variants.gif)" src="{{item.preview.images[0].variants.gif.source.url}}">
         <ion-card-content>
             <ion-card-title>
                 {{item.title}}

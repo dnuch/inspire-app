@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { DetailsPage } from '../details/details'
-
+import { DetailsPage } from '../details/details';
 //services
 import { RedditService } from '../../app/services/reddit.service';
 
@@ -31,7 +30,7 @@ export class RedditsPage {
             this.category = 'LifeProTips';
         }
          
-        if(localStorage.getItem('category') != null) {
+        if(localStorage.getItem('limit') != null) {
             this.limit = localStorage.getItem('limit');
         } else {
             this.limit = 10;
