@@ -25,9 +25,14 @@ export class TweetsPage {
         (document,"script","twitter-wjs");
     }
     
-    getDefaults(){
+    getDefaults() {
         this.presentLoadingDefault();
-        this.tweetPage = localStorage.getItem('tweetPage');
+        
+        if(localStorage.getItem('tweetPage') != null) {
+            this.tweetPage = localStorage.getItem('tweetPage');
+        } else {
+            this.tweetPage = 'UpliftingQuotes';
+        }
     }
     
     presentLoadingDefault() {

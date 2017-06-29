@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { ObjectService } from '../../app/services/object.service';
+
 @Component({
-  templateUrl: 'details.html'
+    templateUrl: 'details.html'
 })
 export class DetailsPage {
     item: any;
     
-    constructor(public navCtrl: NavController, public params: NavParams) {
+    constructor(public navCtrl: NavController, public params: NavParams, private objectService: ObjectService) {
         this.item = params.get('item');
-    }
-
-    isObject(theObject: any) {
-        return (typeof theObject == 'object' ? true : false);
     }
 }

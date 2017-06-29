@@ -2,25 +2,25 @@
     <link rel="stylesheet" type="text/scss" href="/reddits.scss">
     <ion-navbar color="primary">
         <ion-title>
-            LifeTips
+            /r/{{category}}
         </ion-title>
     </ion-navbar>
 </ion-header>
-
+ 
 <ion-content padding>
     <ion-list>
         <ion-item>
             <ion-label fixed>Category</ion-label>
-            <ion-select (ionChange)="changeCategory()" [(ngModel)]="category" name="category">
-                <ion-option value="LifeProTips">LifeProTips</ion-option>
-                <ion-option value="GetMotivated">GetMotivated</ion-option>
+            <ion-select (ionChange)="getDefaults()" [(ngModel)]="category" name="category">
+                <ion-option value="LifeProTips">Life Pro Tips</ion-option>
+                <ion-option value="GetMotivated">Get Motivated</ion-option>
             </ion-select>
         </ion-item>
     </ion-list>
     <ion-list text-wrap>
         <button ion-item *ngFor="let item of items" (click)="viewItem(item.data)">
             <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
-                <img src="{{item.data.thumbnail}}">
+                <img class="rounded-img" src="{{item.data.thumbnail}}">
             </ion-thumbnail>
             <p class="app-font-15">
                 {{item.data.title}}
@@ -36,4 +36,8 @@
             </p>
         </button>
     </ion-list>
+    <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
+        <ion-infinite-scroll-content loadingText="{{moreItems}}">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
