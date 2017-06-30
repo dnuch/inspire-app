@@ -15,7 +15,6 @@ export class RedditsPage {
     items: any;
     limit: number;
     category: string;
-    moreItems: string;
     
     constructor(public navCtrl: NavController, private redditService: RedditService, private objectService: ObjectService) {
         if(localStorage.getItem('category') != null) {
@@ -28,7 +27,6 @@ export class RedditsPage {
     
     getDefaults() {      
         this.limit = 10;
-        this.moreItems = "Loading Reddits...";
         this.getPosts(this.category, this.limit);
     }
     
@@ -45,17 +43,10 @@ export class RedditsPage {
     }
     
     moreReddits(infiniteScroll: any) {
-        console.log( 'BEFORE == limit:',this.limit, 'objects:', this.objectService.objectLength(this.items) );
-        if(this.limit != this.objectService.objectLength(this.items)) {
-            this.moreItems = "No more Reddits...";
+        this.limit += 5;
+        this.getPosts(this.category, this.limit);
+        setTimeout(() => {
             infiniteScroll.complete();
-            //infiniteScroll.enable(false);
-        } else {
-            this.limit += 5;
-            setTimeout(() => {
-                this.getPosts(this.category, this.limit);
-                infiniteScroll.complete();
-            }, 500);
-        }
+        }, 500);
     }
 }

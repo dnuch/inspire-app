@@ -25,6 +25,7 @@
             <p class="app-font-15">
                 {{item.data.title}}
             </p>
+            <br> 
             <p>
                 <ion-icon name="thumbs-up">
                     {{item.data.score}}
@@ -36,8 +37,8 @@
             </p>
         </button>
     </ion-list>
-    <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
-        <ion-infinite-scroll-content loadingText="{{moreItems}}">
+    <ion-infinite-scroll *ngIf="limit==objectService.objectLength(items)" (ionInfinite)="moreReddits($event)">
+        <ion-infinite-scroll-content>
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
