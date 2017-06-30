@@ -15,6 +15,8 @@ import { DetailsPage } from '../pages/details/details';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,7 +31,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
