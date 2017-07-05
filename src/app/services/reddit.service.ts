@@ -5,14 +5,12 @@ import 'rxjs/Rx';
 //Uses Reddit's subreddit API to retrieve posts
 @Injectable()
 export class RedditService {
-    baseUrl: string;
     
     constructor(public http: Http) {
-        this.http = http;
-        this.baseUrl = 'https://www.reddit.com/r/';
+
     }
     
-    getPosts(category: string, limit: number) {
-        return this.http.get(this.baseUrl+category+'/top.json?limit='+limit).map(res => res.json());
+    getPosts(category: string, limit: number): any {
+        return this.http.get('https://www.reddit.com/r/'+category+'/top.json?raw_json=1&limit='+limit).map(res => res.json());
     }
 }

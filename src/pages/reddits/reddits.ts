@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 
 import { DetailsPage } from '../details/details';
 
@@ -12,22 +12,30 @@ import { ObjectService } from '../../app/services/object.service';
 })
 
 export class RedditsPage {
+    
     items: any;
     limit: number;
     category: string;
     
-    constructor(public navCtrl: NavController, private redditService: RedditService, private objectService: ObjectService) {
+    constructor(public menuCtrl: MenuController, public navCtrl: NavController, private redditService: RedditService, private objectService: ObjectService) {
         if(localStorage.getItem('category') != null) {
             this.category = localStorage.getItem('category');
         } else {
             this.category = 'LifeProTips';
         }
         this.getDefaults();
+        //menuCtrl.enable(false, 'tweetMenu'); 
+        //menuCtrl.enable(true, 'redditMenu');   
     }
     
-    getDefaults() {      
+    ionViewDidEnter() {
+        this.menuCtrl.enable(true, 'redditMenu');
+    }
+    
+    getDefaults() {  
         this.limit = 10;
         this.getPosts(this.category, this.limit);
+        //console.log(this.navCtrl);
     }
     
     getPosts(category: string, limit: number) {
@@ -39,7 +47,7 @@ export class RedditsPage {
     viewItem(item: any) {
         this.navCtrl.push(DetailsPage, {
             item: item
-        })
+        });
     }
     
     moreReddits(infiniteScroll: any) {

@@ -31,9 +31,9 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {tabsPlacement: 'top'}),
     IonicImageViewerModule
-  ],
+  ],    
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
