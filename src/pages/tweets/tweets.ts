@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Events, LoadingController, NavController, NavParams, MenuController } from 'ionic-angular';
 
 @Component({
   selector: 'tweets',
@@ -9,8 +9,17 @@ export class TweetsPage {
     
     tweetPage: string;
     
-    constructor(public menuCtrl: MenuController, public loadingCtrl: LoadingController, public navCtrl: NavController, public params: NavParams) {
+    constructor(public events: Events, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public navCtrl: NavController, public params: NavParams) {
         this.getDefaults();
+        
+        events.subscribe('tweetMenu:clicked', (category) => {
+            this.tweetPage = category;
+            this.refreshPage();
+        });
+    }
+    
+    ionViewDidEnter() {
+        this.menuCtrl.enable(true, 'tweetMenu');
     }
     
     ngAfterViewInit() {
@@ -22,10 +31,6 @@ export class TweetsPage {
             fjs.parentNode.insertBefore(js, fjs);
         }
         (document,"script","twitter-wjs");
-    }
-    
-    ionViewDidEnter() {
-        this.menuCtrl.enable(true, 'tweetMenu');
     }
     
     getDefaults() {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { Events, NavController, MenuController } from 'ionic-angular';
 
 import { DetailsPage } from '../details/details';
 
@@ -10,22 +10,25 @@ import { ObjectService } from '../../app/services/object.service';
     selector: 'reddits',
     templateUrl: 'reddits.html'
 })
-
 export class RedditsPage {
     
     items: any;
     limit: number;
     category: string;
     
-    constructor(public menuCtrl: MenuController, public navCtrl: NavController, private redditService: RedditService, private objectService: ObjectService) {
+    constructor(public events: Events, public menuCtrl: MenuController, public navCtrl: NavController, private redditService: RedditService, private objectService: ObjectService) {
         if(localStorage.getItem('category') != null) {
             this.category = localStorage.getItem('category');
         } else {
             this.category = 'LifeProTips';
         }
+        
         this.getDefaults();
-        //menuCtrl.enable(false, 'tweetMenu'); 
-        //menuCtrl.enable(true, 'redditMenu');   
+        
+        events.subscribe('redditMenu:clicked', (category) => {
+            this.category = category;
+            this.getDefaults();
+        });
     }
     
     ionViewDidEnter() {
@@ -35,7 +38,6 @@ export class RedditsPage {
     getDefaults() {  
         this.limit = 10;
         this.getPosts(this.category, this.limit);
-        //console.log(this.navCtrl);
     }
     
     getPosts(category: string, limit: number) {
@@ -50,11 +52,18 @@ export class RedditsPage {
         });
     }
     
+    refreshReddits(refresher: any) {
+        this.getPosts(this.category, this.limit);
+        setTimeout(() => {
+            refresher.complete();
+        }, 1000);
+    }
+    
     moreReddits(infiniteScroll: any) {
         this.limit += 5;
         this.getPosts(this.category, this.limit);
         setTimeout(() => {
             infiniteScroll.complete();
-        }, 500);
+        }, 1000);
     }
 }

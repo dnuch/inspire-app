@@ -1,25 +1,34 @@
 <ion-menu id="redditMenu" [content]="nav">
     <ion-list>
         <ion-item>
+            <ion-label stacked>Your Quote</ion-label>
+            <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
+        </ion-item>
+        <ion-item>
             <ion-label>Category</ion-label>
-            <ion-select (ionChange)="getDefaults()" [(ngModel)]="category" name="category">
+            <ion-select menuClose (ionChange)="clickMenuReddit()" [(ngModel)]="redditCategory" name="redditCategory">
                 <ion-option value="LifeProTips">Life Pro Tips</ion-option>
                 <ion-option value="GetMotivated">Get Motivated</ion-option>
             </ion-select>
         </ion-item>
+        <ion-item (click)="presentQuote()" menuClose>{{userQuote}}</ion-item>
     </ion-list>
 </ion-menu>
 
 <ion-menu id="tweetMenu" [content]="nav">
     <ion-list>
         <ion-item>
+            <ion-label stacked>Your Quote</ion-label>
+            <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
+        </ion-item>
+        <ion-item>
             <ion-label>Category</ion-label>
-            <ion-select (ionChange)="refreshPage()" [(ngModel)]="tweetPage" name="tweetPage">
+            <ion-select menuClose (ionChange)="clickMenuTweet()" [(ngModel)]="tweetCategory" name="tweetCategory">
                 <ion-option value="UpliftingQuotes">Uplifting Quotes</ion-option>
                 <ion-option value="DeepLifeQuotes">Deep Life Quotes</ion-option>
                 <ion-option value="Inspire_Us">Inspirational Quotes</ion-option>
                 <ion-option value="GreatestQuotes">Great Minds Quotes</ion-option>
-                <ion-option value="Quotes_Life">Quotes About Life</ion-option>
+                <ion-option value="Quotes_Life">Life Quotes</ion-option>
             </ion-select>
         </ion-item>
     </ion-list>

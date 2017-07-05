@@ -3,25 +3,12 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>
-            @{{tweetPage}}
+        <ion-title text-center>
+            Twitter
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-            <ion-label fixed>Category</ion-label>
-            <ion-select (ionChange)="refreshPage()" [(ngModel)]="tweetPage" name="tweetPage">
-                <ion-option value="UpliftingQuotes">Uplifting Quotes</ion-option>
-                <ion-option value="DeepLifeQuotes">Deep Life Quotes</ion-option>
-                <ion-option value="Inspire_Us">Inspirational Quotes</ion-option>
-                <ion-option value="GreatestQuotes">Great Minds Quotes</ion-option>
-                <ion-option value="Quotes_Life">Quotes About Life</ion-option>
-            </ion-select>
-        </ion-item>
-    </ion-list>
-
     <a class="twitter-timeline" href="https://twitter.com/{{tweetPage}}"></a>
 </ion-content>

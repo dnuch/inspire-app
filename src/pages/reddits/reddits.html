@@ -4,22 +4,16 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>
-            /r/{{category}}
+        <ion-title text-center>
+            Reddit
         </ion-title>
     </ion-navbar>
 </ion-header>
  
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-            <ion-label>Category</ion-label>
-            <ion-select (ionChange)="getDefaults()" [(ngModel)]="category" name="category">
-                <ion-option value="LifeProTips">Life Pro Tips</ion-option>
-                <ion-option value="GetMotivated">Get Motivated</ion-option>
-            </ion-select>
-        </ion-item>
-    </ion-list>
+    <ion-refresher (ionRefresh)="refreshReddits($event)">
+        <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
     <ion-list text-wrap>
         <button ion-item *ngFor="let item of items" (click)="viewItem(item.data)">
             <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
@@ -41,7 +35,7 @@
             </p>
         </button>
     </ion-list>
-    <ion-infinite-scroll *ngIf="limit==objectService.objectLength(items)" (ionInfinite)="moreReddits($event)">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    <ion-infinite-scroll enabled="limit==objectService.objectLength(items)?true:false" (ionInfinite)="moreReddits($event)">
+        <ion-infinite-scroll-content loadingText="Loading more Reddits..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

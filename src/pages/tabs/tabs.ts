@@ -5,16 +5,16 @@ import { SettingsPage } from '../settings/settings';
 import { RedditsPage } from '../reddits/reddits';
 import { TweetsPage } from '../tweets/tweets';
 @Component({
-  templateUrl: 'tabs.html'
+    templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = RedditsPage;
-  tab2Root = TweetsPage;
-  tab3Root = SettingsPage;
-  tab4Root = AboutPage;
+    tab1Root: any = RedditsPage;
+    tab2Root: any = TweetsPage;
+    tab3Root: any = SettingsPage;
+    tab4Root: any = AboutPage;
 
-  constructor() {
+    constructor() {
 
-  }
+    }
 }
