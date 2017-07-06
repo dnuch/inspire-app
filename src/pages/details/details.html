@@ -6,7 +6,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <ion-card>
         <img *ngIf="item.thumbnail!='self' && !objectService.isObject(item.preview.images[0].variants.gif)" src="{{item.preview.images[0].source.url}}" imageViewer/>
         <img *ngIf="item.thumbnail!='self' && objectService.isObject(item.preview.images[0].variants.gif)" src="{{item.preview.images[0].variants.gif.source.url}}" imageViewer/>

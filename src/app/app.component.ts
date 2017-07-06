@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Events, LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Events, LoadingController, NavController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,11 +7,15 @@ import { RedditService } from './services/reddit.service';
 import { ObjectService } from './services/object.service';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { SettingsPage } from '../pages/settings/settings';
+import { AboutPage } from '../pages/about/about';
 @Component({
     templateUrl: 'app.html',
     providers: [RedditService, ObjectService]
 })
 export class MyApp {
+    
+    @ViewChild('nav') navCtrl: any = NavController;
     
     rootPage:any = TabsPage;
     redditCategory: string;
@@ -49,17 +53,21 @@ export class MyApp {
         let loading = this.loadingCtrl.create({
             spinner: 'hide',
             enableBackdropDismiss: true,
-            content: this.userQuote, 
+            content: this.userQuote
         });
 
         loading.present();
     }
     
-    clickMenuTweet() {
-        this.events.publish('tweetMenu:clicked', this.tweetCategory);
+    clickCategory(menuClicked: string, menuCategory: string) {
+        this.events.publish(menuClicked, menuCategory);
     }
     
-    clickMenuReddit() {
-        this.events.publish('redditMenu:clicked', this.redditCategory);
+    viewSettings() {
+        this.navCtrl.push(SettingsPage);
+    }
+    
+    viewAbout() {
+        this.navCtrl.push(AboutPage);
     }
 }
