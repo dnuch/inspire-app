@@ -1,28 +1,33 @@
 import { Component, ViewChild } from '@angular/core';
-import { Events, LoadingController, NavController, Platform } from 'ionic-angular';
+import { Events, AlertController, NavController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RedditService } from './services/reddit.service';
 import { ObjectService } from './services/object.service';
+import { TumblrService } from './services/tumblr.service';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { SettingsPage } from '../pages/settings/settings';
 import { AboutPage } from '../pages/about/about';
+import { SettingsPage } from '../pages/settings/settings';
 @Component({
     templateUrl: 'app.html',
-    providers: [RedditService, ObjectService]
+    providers: [
+        RedditService, 
+        ObjectService, 
+        TumblrService
+    ]
 })
 export class MyApp {
     
     @ViewChild('nav') navCtrl: any = NavController;
     
-    rootPage:any = TabsPage;
+    rootPage: any = TabsPage;
     redditCategory: string;
     tweetCategory: string;
     userQuote: string;
     
-    constructor(public events: Events, public loadingCtrl: LoadingController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(public events: Events, public alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -47,19 +52,18 @@ export class MyApp {
         } else {
             this.userQuote = 'The world is your oyster.';
         }
+        //this.presentQuote();
     }
     
     presentQuote() {
-        let loading = this.loadingCtrl.create({
-            spinner: 'hide',
-            enableBackdropDismiss: true,
-            content: this.userQuote
+        let alert = this.alertCtrl.create({
+            title: 'Your Quote',
+            subTitle: this.userQuote
         });
-
-        loading.present();
+        alert.present();
     }
     
-    clickCategory(menuClicked: string, menuCategory: string) {
+    changeCategory(menuClicked: string, menuCategory: string) {
         this.events.publish(menuClicked, menuCategory);
     }
     

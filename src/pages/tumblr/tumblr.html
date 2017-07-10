@@ -1,0 +1,43 @@
+<ion-header>
+    <link rel="stylesheet" type="text/scss" href="/tumblr.scss">
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title text-center>
+            Tumblr
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+<!--
+    <ion-refresher (ionRefresh)="refreshReddits($event)">
+        <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
+-->
+    <ion-list text-wrap>
+        <button ion-item *ngFor="let item of items">
+<!--
+            <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
+                <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].source.url}}"/>
+                <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].variants.gif.source.url}}"/>
+            </ion-thumbnail>
+-->
+            <p class="app-font-16">
+                {{item.text}}
+            </p>
+            <br> 
+            <p>
+                <ion-icon name="mail">
+                    {{item.note_count}}
+                </ion-icon>
+            </p>
+        </button>
+    </ion-list>
+<!--
+    <ion-infinite-scroll enabled="limit==objectService.objectLength(items)?true:false" (ionInfinite)="moreReddits($event)">
+        <ion-infinite-scroll-content loadingText="Loading more Reddits..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+-->
+</ion-content>

@@ -3,7 +3,7 @@
         <ion-list-header>subreddits</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
-            <ion-select menuClose (ionChange)="clickCategory('redditMenu:clicked', redditCategory)" [(ngModel)]="redditCategory" name="redditCategory">
+            <ion-select menuClose (ionChange)="changeCategory('redditMenu:clicked', redditCategory)" [(ngModel)]="redditCategory" name="redditCategory">
                 <ion-option value="LifeProTips">Life Pro Tips</ion-option>
                 <ion-option value="GetMotivated">Get Motivated</ion-option>
             </ion-select>
@@ -28,7 +28,7 @@
         <ion-list-header>Twitter Usernames</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
-            <ion-select menuClose (ionChange)="clickCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory" name="tweetCategory">
+            <ion-select menuClose (ionChange)="changeCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory" name="tweetCategory">
                 <ion-option value="UpliftingQuotes">Uplifting Quotes</ion-option>
                 <ion-option value="DeepLifeQuotes">Deep Life Quotes</ion-option>
                 <ion-option value="Inspire_Us">Inspirational Quotes</ion-option>
