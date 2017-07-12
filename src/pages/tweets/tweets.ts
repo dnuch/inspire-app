@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Events, LoadingController, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Events, LoadingController, NavController, MenuController } from 'ionic-angular';
 
 @Component({
   selector: 'tweets',
@@ -9,7 +9,7 @@ export class TweetsPage {
     
     tweetPage: string;
     
-    constructor(public events: Events, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public navCtrl: NavController, public params: NavParams) {
+    constructor(public events: Events, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public navCtrl: NavController) {
         this.getDefaults();
         
         events.subscribe('tweetMenu:clicked', (category) => {
@@ -24,7 +24,7 @@ export class TweetsPage {
     
     ngAfterViewInit() {
         !function(d,s,id){
-            var js: any, fjs = d.getElementsByTagName(s)[0];
+            let js: any, fjs = d.getElementsByTagName(s)[0];
             js = d.createElement(s);
             js.id = id;
             js.src = "https://platform.twitter.com/widgets.js";

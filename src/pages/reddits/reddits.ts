@@ -43,7 +43,6 @@ export class RedditsPage {
     getPosts(category: string, limit: number) {
         this.redditService.getPosts(category, limit).subscribe(response => {
             this.items = response.data.children;
-                    console.log(this.items);
         });
     }
     

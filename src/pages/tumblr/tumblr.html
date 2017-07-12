@@ -10,12 +10,10 @@
     </ion-navbar>
 </ion-header>
  
-<ion-content>
-<!--
-    <ion-refresher (ionRefresh)="refreshReddits($event)">
+<ion-content padding-top>
+    <ion-refresher (ionRefresh)="refreshBlog($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
--->
     <ion-list text-wrap>
         <button ion-item *ngFor="let item of items">
 <!--
@@ -27,17 +25,13 @@
             <p class="app-font-16">
                 {{item.text}}
             </p>
-            <br> 
             <p>
-                <ion-icon name="mail">
-                    {{item.note_count}}
-                </ion-icon>
+                <br>—&nbsp;{{item.source}}&nbsp;
+                <ion-icon name="mail">&nbsp;{{item.note_count}}</ion-icon>
             </p>
         </button>
     </ion-list>
-<!--
-    <ion-infinite-scroll enabled="limit==objectService.objectLength(items)?true:false" (ionInfinite)="moreReddits($event)">
-        <ion-infinite-scroll-content loadingText="Loading more Reddits..."></ion-infinite-scroll-content>
+    <ion-infinite-scroll enabled="limit==objectService.objectLength(items)?true:false" (ionInfinite)="morePosts($event)">
+        <ion-infinite-scroll-content loadingText="Loading more Posts..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
--->
 </ion-content>

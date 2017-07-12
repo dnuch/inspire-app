@@ -25,6 +25,7 @@ export class MyApp {
     rootPage: any = TabsPage;
     redditCategory: string;
     tweetCategory: string;
+    tumblrCategory: string;
     userQuote: string;
     
     constructor(public events: Events, public alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -47,18 +48,24 @@ export class MyApp {
             this.tweetCategory = 'UpliftingQuotes';
         }
         
+        if(localStorage.getItem('blog') != null) {
+            this.tumblrCategory = localStorage.getItem('blog');
+        } else {
+            this.tumblrCategory = 'quotemadness';
+        }
+        
         if(localStorage.getItem('quote') != null) {
             this.tweetCategory = localStorage.getItem('quote');
         } else {
             this.userQuote = 'The world is your oyster.';
         }
-        //this.presentQuote();
+        this.presentQuote();
     }
     
     presentQuote() {
         let alert = this.alertCtrl.create({
-            title: 'Your Quote',
-            subTitle: this.userQuote
+            title: this.userQuote,
+            subTitle: '<br>— You'
         });
         alert.present();
     }

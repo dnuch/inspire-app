@@ -5,12 +5,12 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title text-center>
-            reddit
+            Reddit
         </ion-title>
     </ion-navbar>
 </ion-header>
  
-<ion-content>
+<ion-content padding-top>
     <ion-refresher (ionRefresh)="refreshReddits($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>

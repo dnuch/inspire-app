@@ -5,13 +5,9 @@ import 'rxjs/Rx';
 @Injectable()
 export class TumblrService {
     
-    api_key: string;
+    constructor(private jsonp: Jsonp) { }
     
-    constructor(private jsonp: Jsonp) {
-        this.api_key = 'rvNpIWW8rkM9fG5RzsxzCv95QANMrhUImnXsFLCuSyDZTGvpsR';
-    }
-    
-    getPosts(blog_url: string, limit: string): any {
-        return this.jsonp.get('https://api.tumblr.com/v2/blog/'+blog_url+'/posts?callback=JSONP_CALLBACK&api_key='+this.api_key+'&limit='+limit).map(res => res.json());
+    getPosts(blog_url: string, limit: number): any {
+        return this.jsonp.get('https://api.tumblr.com/v2/blog/'+blog_url+'.com/posts?filter=text&callback=JSONP_CALLBACK&api_key=rvNpIWW8rkM9fG5RzsxzCv95QANMrhUImnXsFLCuSyDZTGvpsR&limit='+limit).map(res => res.json());
     }
 }

@@ -3,11 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ObjectService {
     
-    constructor() {
-        
-    }
+    constructor() { }
     
-    objectLength(object: any) {
+    objectLength(object: any): number {
         let length = 0;
         for( var key in object ) {
             if( object.hasOwnProperty(key) ) {
@@ -17,7 +15,7 @@ export class ObjectService {
         return length;
     }
     
-    isObject(object: any) {
+    isObject(object: any): boolean {
         return (typeof object == 'object' ? true : false);
     }
 }

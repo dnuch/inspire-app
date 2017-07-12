@@ -34,6 +34,32 @@
                 <ion-option value="Inspire_Us">Inspirational Quotes</ion-option>
                 <ion-option value="GreatestQuotes">Great Minds Quotes</ion-option>
                 <ion-option value="Quotes_Life">Life Quotes</ion-option>
+                <ion-option value="babycarebot">Reminders</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item menuClose (click)="viewSettings()">
+            <ion-icon name="construct"></ion-icon>
+              Settings
+        </ion-item>
+        <ion-item menuClose (click)="viewAbout()" >
+            <ion-icon name="information-circle"></ion-icon>
+              About
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Your Quote</ion-label>
+            <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-menu>
+
+<ion-menu id="tumblrMenu" [content]="nav">
+    <ion-list>
+        <ion-list-header>Tumblr</ion-list-header>
+        <ion-item>
+            <ion-label stacked>Category</ion-label>
+            <ion-select menuClose (ionChange)="changeCategory('tumblrMenu:clicked', tumblrCategory)" [(ngModel)]="tumblrCategory" name="tumblrCategory">
+                <ion-option value="quotemadness">Literature Quotes</ion-option>
+                <ion-option value="lifeofquotations.tumblr">Life Quotes</ion-option>
             </ion-select>
         </ion-item>
         <ion-item menuClose (click)="viewSettings()">
