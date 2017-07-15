@@ -14,19 +14,19 @@ export class RedditsPage {
     
     items: any;
     limit: number;
-    category: string;
+    redditCategory: string;
     
-    constructor(public events: Events, public menuCtrl: MenuController, public navCtrl: NavController, private redditService: RedditService, private objectService: ObjectService) {
-        if(localStorage.getItem('category') != null) {
-            this.category = localStorage.getItem('category');
+    constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, private redditService: RedditService, public objectService: ObjectService) {
+        if(localStorage.getItem('redditCategory') != null) {
+            this.redditCategory = localStorage.getItem('redditCategory');
         } else {
-            this.category = 'LifeProTips';
+            this.redditCategory = 'LifeProTips';
         }
         
         this.getDefaults();
         
         events.subscribe('redditMenu:clicked', (category) => {
-            this.category = category;
+            this.redditCategory = category;
             this.getDefaults();
         });
     }
@@ -37,7 +37,7 @@ export class RedditsPage {
     
     getDefaults() {
         this.limit = 10;
-        this.getPosts(this.category, this.limit);
+        this.getPosts(this.redditCategory, this.limit);
     }
     
     getPosts(category: string, limit: number) {
@@ -53,7 +53,7 @@ export class RedditsPage {
     }
     
     refreshReddits(refresher: any) {
-        this.getPosts(this.category, this.limit);
+        this.getPosts(this.redditCategory, this.limit);
         setTimeout(() => {
             refresher.complete();
         }, 1000);
@@ -61,7 +61,7 @@ export class RedditsPage {
     
     moreReddits(infiniteScroll: any) {
         this.limit += 5;
-        this.getPosts(this.category, this.limit);
+        this.getPosts(this.redditCategory, this.limit);
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);

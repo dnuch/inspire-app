@@ -27,8 +27,9 @@ export class MyApp {
     tweetCategory: string;
     tumblrCategory: string;
     userQuote: string;
+    userName: string;
     
-    constructor(public events: Events, public alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(private events: Events, private alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -36,36 +37,43 @@ export class MyApp {
             splashScreen.hide();
         });
         
-        if(localStorage.getItem('category') != null) {
-            this.redditCategory = localStorage.getItem('category');
+        if(localStorage.getItem('redditCategory') != null) {
+            this.redditCategory = localStorage.getItem('redditCategory');
         } else {
             this.redditCategory = 'LifeProTips';
         }
         
-        if(localStorage.getItem('tweetPage') != null) {
-            this.tweetCategory = localStorage.getItem('tweetPage');
+        if(localStorage.getItem('tweetCategory') != null) {
+            this.tweetCategory = localStorage.getItem('tweetCategory');
         } else {
             this.tweetCategory = 'UpliftingQuotes';
         }
         
-        if(localStorage.getItem('blog') != null) {
-            this.tumblrCategory = localStorage.getItem('blog');
+        if(localStorage.getItem('tumblrCategory') != null) {
+            this.tumblrCategory = localStorage.getItem('tumblrCategory');
         } else {
             this.tumblrCategory = 'quotemadness';
         }
         
         if(localStorage.getItem('quote') != null) {
-            this.tweetCategory = localStorage.getItem('quote');
+            this.userQuote = localStorage.getItem('quote');
         } else {
             this.userQuote = 'The world is your oyster.';
         }
-        this.presentQuote();
+        
+        if(localStorage.getItem('username') != null) {
+            this.userName = localStorage.getItem('username');
+        } else {
+            this.userName = 'William Shakespeare';
+        }
+        
+        //this.presentQuote();
     }
     
     presentQuote() {
         let alert = this.alertCtrl.create({
             title: this.userQuote,
-            subTitle: '<br>— You'
+            subTitle: '<br>— '+this.userName
         });
         alert.present();
     }
@@ -75,7 +83,13 @@ export class MyApp {
     }
     
     viewSettings() {
-        this.navCtrl.push(SettingsPage);
+        this.navCtrl.push(SettingsPage, {
+            quote: this.userQuote,
+            username: this.userName,
+            redditCategory: this.redditCategory,
+            tweetCategory: this.tweetCategory,
+            tumblrCategory: this.tumblrCategory
+        });
     }
     
     viewAbout() {

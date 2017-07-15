@@ -12,20 +12,20 @@ import { ObjectService } from '../../app/services/object.service';
 export class TumblrPage {
     
     items: any;
-    blog: string;
+    tumblrCategory: string;
     limit: number;
     
-    constructor(public events: Events, public menuCtrl: MenuController, public tumblrService: TumblrService, public objectService: ObjectService) {
-        if(localStorage.getItem('blog') != null) {
-            this.blog = localStorage.getItem('blog');
+    constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService) {
+        if(localStorage.getItem('tumblrCategory') != null) {
+            this.tumblrCategory = localStorage.getItem('tumblrCategory');
         } else {
-            this.blog = 'quotemadness';
+            this.tumblrCategory = 'quotemadness';
         }
         
         this.getDefaults();
         
         events.subscribe('tumblrMenu:clicked', (blog) => {
-            this.blog = blog;
+            this.tumblrCategory = blog;
             this.getDefaults();
         });
     }
@@ -37,7 +37,7 @@ export class TumblrPage {
     
     getDefaults() {
         this.limit = 10;
-        this.getPosts(this.blog, this.limit);
+        this.getPosts(this.tumblrCategory, this.limit);
     }
     
     getPosts(blog: string, limit: number) {
@@ -46,16 +46,25 @@ export class TumblrPage {
         });
     }
     
+    addPosts(blog: string, limit: number) {
+        this.tumblrService.getPosts(blog, limit).subscribe(object => {
+            for(let i = 5; i > 0; i--)
+                this.items.push(object.response.posts[limit-i]);
+        });
+    }
+    
     refreshBlog(refresher: any) {
-        this.getPosts(this.blog, this.limit);
+        this.limit = 10;
+        this.getPosts(this.tumblrCategory, this.limit-1);
         setTimeout(() => {
             refresher.complete();
         }, 1000);
     }
     
     morePosts(infiniteScroll: any) {
-        if(this.limit < 50) this.limit += 5;
-        this.getPosts(this.blog, this.limit);
+        this.limit <= 45 ? this.limit += 5 : this.limit = 5;
+        
+        this.addPosts(this.tumblrCategory, this.limit);
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);

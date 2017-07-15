@@ -7,13 +7,13 @@ import { Events, LoadingController, NavController, MenuController } from 'ionic-
 })
 export class TweetsPage {
     
-    tweetPage: string;
+    tweetCategory: string;
     
-    constructor(public events: Events, public menuCtrl: MenuController, public loadingCtrl: LoadingController, public navCtrl: NavController) {
+    constructor(private events: Events, private menuCtrl: MenuController, private loadingCtrl: LoadingController, private navCtrl: NavController) {
         this.getDefaults();
         
         events.subscribe('tweetMenu:clicked', (category) => {
-            this.tweetPage = category;
+            this.tweetCategory = category;
             this.refreshPage();
         });
     }
@@ -23,29 +23,29 @@ export class TweetsPage {
     }
     
     ngAfterViewInit() {
-        !function(d,s,id){
-            let js: any, fjs = d.getElementsByTagName(s)[0];
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-        (document,"script","twitter-wjs");
+            !function(d,s,id){
+                let js: any, fjs = d.getElementsByTagName(s)[0];
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+            (document,"script","twitter-wjs");
     }
     
     getDefaults() {
         this.presentLoadingDefault();
         
-        if(localStorage.getItem('tweetPage') != null) {
-            this.tweetPage = localStorage.getItem('tweetPage');
+        if(localStorage.getItem('tweetCategory') != null) {
+            this.tweetCategory = localStorage.getItem('tweetCategory');
         } else {
-            this.tweetPage = 'UpliftingQuotes';
+            this.tweetCategory = 'UpliftingQuotes';
         }
     }
     
     presentLoadingDefault() {
         let loading = this.loadingCtrl.create({
-        content: 'Loading Tweets...'
+            content: 'Loading Tweets...'
         });
 
         loading.present();
@@ -56,7 +56,7 @@ export class TweetsPage {
     }
     
     refreshPage() {
-        localStorage.setItem('tweetPage', this.tweetPage);
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+        localStorage.setItem('tweetCategory', this.tweetCategory);
+        this.navCtrl.setRoot(this.navCtrl.getActive().component); 
     }
 }

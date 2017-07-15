@@ -1,6 +1,6 @@
 <ion-menu id="redditMenu" [content]="nav">
     <ion-list>
-        <ion-list-header>subreddits</ion-list-header>
+        <ion-list-header>Reddit</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('redditMenu:clicked', redditCategory)" [(ngModel)]="redditCategory" name="redditCategory">
@@ -8,24 +8,20 @@
                 <ion-option value="GetMotivated">Get Motivated</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item menuClose (click)="viewSettings()">
+        <button ion-item menuClose (click)="viewSettings()">
             <ion-icon name="construct"></ion-icon>
               Settings
-        </ion-item>
-        <ion-item menuClose (click)="viewAbout()" >
+        </button>
+        <button ion-item menuClose (click)="viewAbout()" >
             <ion-icon name="information-circle"></ion-icon>
               About
-        </ion-item>
-        <ion-item>
-            <ion-label stacked>Your Quote</ion-label>
-            <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
-        </ion-item>
+        </button>
     </ion-list>
 </ion-menu>
 
 <ion-menu id="tweetMenu" [content]="nav">
     <ion-list>
-        <ion-list-header>Twitter Usernames</ion-list-header>
+        <ion-list-header>Twitter</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory" name="tweetCategory">
@@ -37,18 +33,14 @@
                 <ion-option value="babycarebot">Reminders</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item menuClose (click)="viewSettings()">
+        <button ion-item menuClose (click)="viewSettings()">
             <ion-icon name="construct"></ion-icon>
               Settings
-        </ion-item>
-        <ion-item menuClose (click)="viewAbout()" >
+        </button>
+        <button ion-item menuClose (click)="viewAbout()" >
             <ion-icon name="information-circle"></ion-icon>
               About
-        </ion-item>
-        <ion-item>
-            <ion-label stacked>Your Quote</ion-label>
-            <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
-        </ion-item>
+        </button>
     </ion-list>
 </ion-menu>
 
@@ -60,20 +52,17 @@
             <ion-select menuClose (ionChange)="changeCategory('tumblrMenu:clicked', tumblrCategory)" [(ngModel)]="tumblrCategory" name="tumblrCategory">
                 <ion-option value="quotemadness">Literature Quotes</ion-option>
                 <ion-option value="lifeofquotations.tumblr">Life Quotes</ion-option>
+                <ion-option value="personal-quotes">Personal Quotes</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item menuClose (click)="viewSettings()">
+        <button ion-item menuClose (click)="viewSettings()">
             <ion-icon name="construct"></ion-icon>
               Settings
-        </ion-item>
-        <ion-item menuClose (click)="viewAbout()" >
+        </button>
+        <button ion-item menuClose (click)="viewAbout()" >
             <ion-icon name="information-circle"></ion-icon>
               About
-        </ion-item>
-        <ion-item>
-            <ion-label stacked>Your Quote</ion-label>
-            <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
-        </ion-item>
+        </button>
     </ion-list>
 </ion-menu>
 

@@ -10,7 +10,7 @@ export class DetailsPage {
     
     item: any;
     
-    constructor(public params: NavParams, private objectService: ObjectService) {
+    constructor(private params: NavParams, private objectService: ObjectService) {
         this.item = params.get('item');
     }
 }
