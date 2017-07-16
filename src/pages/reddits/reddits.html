@@ -35,7 +35,7 @@
             </p>
         </button>
     </ion-list>
-    <ion-infinite-scroll enabled="limit==objectService.objectLength(items)?true:false" (ionInfinite)="moreReddits($event)">
+    <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
         <ion-infinite-scroll-content loadingText="Loading more Reddits..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

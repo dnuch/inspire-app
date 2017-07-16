@@ -68,6 +68,5 @@ export class TumblrPage {
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);
-        console.log( this.limit, this.objectService.objectLength(this.items));
     }
 }

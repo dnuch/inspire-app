@@ -9,23 +9,25 @@
 <ion-content padding>
     <form (submit)="setDefaults()">
         <ion-list>
+            <ion-item-divider>Set Your Quote</ion-item-divider>
             <ion-item>
-                <ion-label stacked>Your Quote</ion-label>
+                <ion-label stacked>Quote</ion-label>
                 <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label stacked>Your Name</ion-label>
+                <ion-label stacked>Name</ion-label>
                 <ion-input [(ngModel)]="userName" name="userName"></ion-input>
             </ion-item>
+            <ion-item-divider>Set Default Categories</ion-item-divider>
             <ion-item>
-                <ion-label stacked>Reddit Category</ion-label>
+                <ion-label stacked>Reddit</ion-label>
                 <ion-select [(ngModel)]="redditCategory" name="redditCategory">
                     <ion-option value="LifeProTips">Life Pro Tips</ion-option>
                     <ion-option value="GetMotivated">Get Motivated</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-            <ion-label stacked>Tweet Category</ion-label>
+            <ion-label stacked>Twitter</ion-label>
                 <ion-select [(ngModel)]="tweetCategory" name="tweetCategory">
                     <ion-option value="UpliftingQuotes">Uplifting Quotes</ion-option>
                     <ion-option value="DeepLifeQuotes">Deep Life Quotes</ion-option>
@@ -36,10 +38,11 @@
                 </ion-select>
             </ion-item>
             <ion-item>
-            <ion-label stacked>Category</ion-label>
+            <ion-label stacked>Tumblr</ion-label>
                 <ion-select [(ngModel)]="tumblrCategory" name="tumblrCategory">
                     <ion-option value="quotemadness">Literature Quotes</ion-option>
                     <ion-option value="lifeofquotations.tumblr">Life Quotes</ion-option>
+                    <ion-option value="personal-quotes">Personal Quotes</ion-option>
                 </ion-select>
             </ion-item>
             <button ion-button type="submit" block>Save</button>
