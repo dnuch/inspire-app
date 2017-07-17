@@ -12,7 +12,5 @@ export class TabsPage {
     tab2Root: any = TweetsPage;
     tab3Root: any = TumblrPage;
 
-    constructor() {
-
-    }
+    constructor() { }
 }
