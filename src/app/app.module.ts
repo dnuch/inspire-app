@@ -16,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { TwitterService } from 'ng2-twitter';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
   providers: [
     StatusBar,
     SplashScreen,
+    TwitterService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

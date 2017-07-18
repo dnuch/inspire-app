@@ -41,9 +41,7 @@ export class TumblrPage {
     }
     
     getPosts(blog: string, limit: number) {
-        this.tumblrService.getPosts(blog, limit).subscribe(object => {
-            this.items = object.response.posts;
-        });
+        this.tumblrService.getPosts(blog, limit).subscribe(object => this.items = object.response.posts);
     }
     
     addPosts(blog: string, limit: number) {

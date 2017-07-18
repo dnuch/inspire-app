@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams } from 'ionic-angular';
 @Component({
-  selector: 'settings',
-  templateUrl: 'settings.html'
+    selector: 'settings',
+    templateUrl: 'settings.html'
 })
 export class SettingsPage {
     

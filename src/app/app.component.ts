@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RedditService } from './services/reddit.service';
 import { ObjectService } from './services/object.service';
 import { TumblrService } from './services/tumblr.service';
+import { TwitterProvider } from './services/twitter.service';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { AboutPage } from '../pages/about/about';
@@ -15,7 +16,8 @@ import { SettingsPage } from '../pages/settings/settings';
     providers: [
         RedditService, 
         ObjectService, 
-        TumblrService
+        TumblrService,
+        TwitterProvider
     ]
 })
 export class MyApp {

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Events, LoadingController, NavController, MenuController } from 'ionic-angular';
+import { Events, MenuController } from 'ionic-angular';
+
+import { TwitterProvider } from '../../app/services/twitter.service';
+import { ObjectService } from '../../app/services/object.service';
 
 @Component({
   selector: 'tweets',
@@ -8,55 +11,49 @@ import { Events, LoadingController, NavController, MenuController } from 'ionic-
 export class TweetsPage {
     
     tweetCategory: string;
+    items: any;
+    limit: number;
     
-    constructor(private events: Events, private menuCtrl: MenuController, private loadingCtrl: LoadingController, private navCtrl: NavController) {
-        this.getDefaults();
-        
+    constructor(private events: Events, private menuCtrl: MenuController, public twitterProvider: TwitterProvider, public objectService: ObjectService) {
+        if(localStorage.getItem('tweetCategory') != null) {
+            this.tweetCategory = localStorage.getItem('tweetCategory');
+        } else {
+            this.tweetCategory = 'UpliftingQuotes';
+        }
         events.subscribe('tweetMenu:clicked', (category) => {
             this.tweetCategory = category;
-            this.refreshPage();
+            this.getDefaults();
         });
+        this.getDefaults();
     }
     
     ionViewDidEnter() {
         this.menuCtrl.enable(true, 'tweetMenu');
     }
     
-    ngAfterViewInit() {
-            !function(d,s,id){
-                let js: any, fjs = d.getElementsByTagName(s)[0];
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "https://platform.twitter.com/widgets.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }
-            (document,"script","twitter-wjs");
-    }
-    
     getDefaults() {
-        this.presentLoadingDefault();
-        
-        if(localStorage.getItem('tweetCategory') != null) {
-            this.tweetCategory = localStorage.getItem('tweetCategory');
-        } else {
-            this.tweetCategory = 'UpliftingQuotes';
-        }
+        this.limit = 10;
+        this.getTweets(this.tweetCategory, this.limit);
     }
     
-    presentLoadingDefault() {
-        let loading = this.loadingCtrl.create({
-            content: 'Loading Tweets...'
-        });
-
-        loading.present();
-
+    getTweets(category: string, limit: number) {
+        this.twitterProvider.getTweets(category, limit).subscribe(res => this.items = res);
+    }
+    
+    refreshTweets(refresher: any) {
+        this.limit = 10;
+        this.getTweets(this.tweetCategory, this.limit);
         setTimeout(() => {
-            loading.dismiss();
-        }, 500);
+            refresher.complete();
+        }, 1000);
     }
     
-    refreshPage() {
-        localStorage.setItem('tweetCategory', this.tweetCategory);
-        this.navCtrl.setRoot(this.navCtrl.getActive().component); 
+    moreTweets(infiniteScroll: any) {
+        this.limit += 5;
+        this.getTweets(this.tweetCategory, this.limit);
+        setTimeout(() => {
+            infiniteScroll.complete();
+        }, 1000);
+        console.log(this.items);
     }
 }

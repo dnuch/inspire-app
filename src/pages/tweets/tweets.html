@@ -9,6 +9,24 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <a class="twitter-timeline" href="https://twitter.com/{{tweetCategory}}" data-chrome="noheader nofooter noborders transparent"></a>
+<ion-content padding-top>
+    <ion-refresher (ionRefresh)="refreshTweets($event)">
+        <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
+    <ion-list *ngFor="let item of items" text-wrap>
+        <ion-item *ngIf="item.entities.urls.length==0">
+            <img *ngIf="objectService.isObject(item.entities.media)" src="{{item.entities.media[0].media_url}}" imageViewer/>
+            <p *ngIf="!objectService.isObject(item.entities.media)" class="app-font-16">
+                {{item.text}}
+            </p>
+            <p><br>
+                <ion-icon name="heart">&nbsp;{{item.favorite_count}}</ion-icon>
+                &nbsp;&nbsp;
+                <ion-icon name="sync">&nbsp;{{item.retweet_count}}</ion-icon>
+            </p>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="moreTweets($event)">
+        <ion-infinite-scroll-content loadingText="Loading Tweets..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
