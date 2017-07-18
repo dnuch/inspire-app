@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar color="primary">
+    <ion-navbar color="secondary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
@@ -13,8 +13,8 @@
     <ion-refresher (ionRefresh)="refreshReddits($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
-    <ion-list  *ngFor="let item of items" text-wrap>
-        <button ion-item (click)="viewItem(item.data)">
+    <ion-list text-wrap>
+        <ion-item *ngFor="let item of items" (click)="viewItem(item.data)">
             <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
                 <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].source.url}}"/>
                 <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].variants.gif.source.url}}"/>
@@ -32,7 +32,7 @@
                     {{item.data.num_comments}}
                 </ion-icon>
             </p>
-        </button>
+        </ion-item>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
         <ion-infinite-scroll-content loadingText="Loading Reddits..."></ion-infinite-scroll-content>

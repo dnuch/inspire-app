@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Events, MenuController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TwitterProvider } from '../../app/services/twitter.service';
 import { ObjectService } from '../../app/services/object.service';
@@ -13,8 +14,9 @@ export class TweetsPage {
     tweetCategory: string;
     items: any;
     limit: number;
+    browser: any;
     
-    constructor(private events: Events, private menuCtrl: MenuController, public twitterProvider: TwitterProvider, public objectService: ObjectService) {
+    constructor(private events: Events, private menuCtrl: MenuController, public twitterProvider: TwitterProvider, public objectService: ObjectService, public iab: InAppBrowser) {
         if(localStorage.getItem('tweetCategory') != null) {
             this.tweetCategory = localStorage.getItem('tweetCategory');
         } else {
@@ -55,5 +57,9 @@ export class TweetsPage {
             infiniteScroll.complete();
         }, 1000);
         console.log(this.items);
+    }
+    
+    btnRedirect(item: any) {
+        this.browser = this.iab.create('https://twitter.com/'+item.user.screen_name+'/statuses/'+item.id_str);
     }
 }

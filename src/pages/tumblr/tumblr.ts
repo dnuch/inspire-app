@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import { Events, MenuController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TumblrService } from '../../app/services/tumblr.service';
 import { ObjectService } from '../../app/services/object.service';
@@ -14,8 +14,9 @@ export class TumblrPage {
     items: any;
     tumblrCategory: string;
     limit: number;
+    browser: any;
     
-    constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService) {
+    constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
         if(localStorage.getItem('tumblrCategory') != null) {
             this.tumblrCategory = localStorage.getItem('tumblrCategory');
         } else {
@@ -61,10 +62,13 @@ export class TumblrPage {
     
     morePosts(infiniteScroll: any) {
         this.limit <= 45 ? this.limit += 5 : this.limit = 5;
-        
         this.addPosts(this.tumblrCategory, this.limit);
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);
+    }
+    
+    btnRedirect(item: any) {
+        this.browser = this.iab.create(item.post_url);
     }
 }

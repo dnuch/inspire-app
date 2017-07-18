@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -49,6 +50,7 @@ import { TwitterService } from 'ng2-twitter';
   ],
   providers: [
     StatusBar,
+    InAppBrowser,
     SplashScreen,
     TwitterService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

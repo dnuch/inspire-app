@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+
 import { Events, AlertController, NavController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
