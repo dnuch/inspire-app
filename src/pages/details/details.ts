@@ -10,12 +10,8 @@ import { ObjectService } from '../../app/services/object.service';
 export class DetailsPage {
     
     item: any;
-    browser: any;
+
     constructor(private params: NavParams, public objectService: ObjectService, public iab: InAppBrowser) {
         this.item = params.get('item');
-    }
-
-    btnRedirect(item: any) {
-        this.browser = this.iab.create('http://reddit.com/'+item.permalink);
     }
 }

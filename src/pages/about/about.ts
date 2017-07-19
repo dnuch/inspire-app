@@ -7,7 +7,7 @@ import { MenuController } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(private menuCtrl: MenuController) {
+    constructor(private menuCtrl: MenuController) {
         menuCtrl.swipeEnable(false);
     }
     

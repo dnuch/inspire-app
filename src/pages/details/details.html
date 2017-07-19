@@ -37,7 +37,7 @@
                     </ion-note>
                 </ion-item>
             </ion-list>
-            <button ion-button block (click)="btnRedirect(item)">Website</button>
+            <button ion-button block (click)="iab.create('http://reddit.com/'+item.permalink)">Website</button>
         </ion-card-content>
     </ion-card>
 </ion-content>

@@ -16,12 +16,8 @@ export class RedditsPage {
     limit: number;
     redditCategory: string;
     
-    constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, private redditService: RedditService, public objectService: ObjectService) {
-        if(localStorage.getItem('redditCategory') != null) {
-            this.redditCategory = localStorage.getItem('redditCategory');
-        } else {
-            this.redditCategory = 'LifeProTips';
-        }
+    constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, public redditService: RedditService, public objectService: ObjectService) {
+        localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'LifeProTips';
         
         this.getDefaults();
         
@@ -41,9 +37,7 @@ export class RedditsPage {
     }
     
     getPosts(category: string, limit: number) {
-        this.redditService.getPosts(category, limit).subscribe(response => {
-            this.items = response.data.children;
-        });
+        this.redditService.getPosts(category, limit).subscribe(response => this.items = response.data.children);
     }
     
     viewItem(item: any) {

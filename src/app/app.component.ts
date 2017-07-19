@@ -23,12 +23,16 @@ import { SettingsPage } from '../pages/settings/settings';
 })
 export class MyApp {
     
-    @ViewChild('nav') navCtrl: any = NavController;
-    
+    @ViewChild('nav') navCtrl: any = NavController; 
     rootPage: any = TabsPage;
+    
     redditCategory: string;
     tweetCategory: string;
     tumblrCategory: string;
+    redditOptions: Array<{ name: string, category: string }>;
+    tweetOptions: Array<{ name: string, category: string }>;
+    tumblrOptions: Array<{ name: string, category: string }>;
+    
     userQuote: string;
     userName: string;
     
@@ -39,38 +43,8 @@ export class MyApp {
             statusBar.styleDefault();
             splashScreen.hide();
         });
-        
-        if(localStorage.getItem('redditCategory') != null) {
-            this.redditCategory = localStorage.getItem('redditCategory');
-        } else {
-            this.redditCategory = 'LifeProTips';
-        }
-        
-        if(localStorage.getItem('tweetCategory') != null) {
-            this.tweetCategory = localStorage.getItem('tweetCategory');
-        } else {
-            this.tweetCategory = 'UpliftingQuotes';
-        }
-        
-        if(localStorage.getItem('tumblrCategory') != null) {
-            this.tumblrCategory = localStorage.getItem('tumblrCategory');
-        } else {
-            this.tumblrCategory = 'quotemadness';
-        }
-        
-        if(localStorage.getItem('quote') != null) {
-            this.userQuote = localStorage.getItem('quote');
-        } else {
-            this.userQuote = 'The world is your oyster.';
-        }
-        
-        if(localStorage.getItem('username') != null) {
-            this.userName = localStorage.getItem('username');
-        } else {
-            this.userName = 'William Shakespeare';
-        }
-        
-        //this.presentQuote();
+        this.getDefaults();
+        this.presentQuote();
     }
     
     presentQuote() {
@@ -91,11 +65,79 @@ export class MyApp {
             username: this.userName,
             redditCategory: this.redditCategory,
             tweetCategory: this.tweetCategory,
-            tumblrCategory: this.tumblrCategory
+            tumblrCategory: this.tumblrCategory,
+            redditOptions: this.redditOptions,
+            tweetOptions: this.tweetOptions,
+            tumblrOptions: this.tumblrOptions
         });
     }
     
     viewAbout() {
         this.navCtrl.push(AboutPage);
+    }
+    
+    getDefaults() {
+        localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'LifeProTips';
+        
+        localStorage.getItem('tweetCategory') != null ? this.tweetCategory = localStorage.getItem('tweetCategory') : this.tweetCategory = 'UpliftingQuotes';
+        
+        localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'quotemadness';
+        
+        localStorage.getItem('quote') != null ? this.userQuote = localStorage.getItem('quote') : this.userQuote = 'The world is your oyster.';
+        
+        localStorage.getItem('username') != null ? this.userName = localStorage.getItem('username') : this.userName = 'William Shakespeare';  
+        
+        this.redditOptions = [
+            {
+                name: 'Life Pro Tips',
+                category: 'LifeProTips'
+            },
+            {
+                name: 'Get Motivated',
+                category: 'GetMotivated'
+            }
+        ];
+                
+        this.tweetOptions = [
+            {
+                name: 'Uplifting Quotes',
+                category: 'UpliftingQuotes'
+            },
+            {
+                name: 'Deep Life Quotes',
+                category: 'DeepLifeQuotes'
+            },
+            {
+                name: 'Inspirational Quotes',
+                category: 'Inspire_Us'
+            },
+            {
+                name: 'Great Minds Quotes',
+                category: 'GreatestQuotes'
+            },            
+            {
+                name: 'Life Quotes',
+                category: 'Quotes_Life'
+            },
+            {
+                name: 'Reminders',
+                category: 'babycarebot'
+            }
+        ];
+        
+        this.tumblrOptions = [
+            {
+                name: 'Literature Quotes',
+                category: 'quotemadness'
+            },            
+            {
+                name: 'Life Quotes',
+                category: 'lifeofquotations.tumblr'
+            },
+            {
+                name: 'Personal Quotes',
+                category: 'personal-quotes'
+            }
+        ];
     }
 }

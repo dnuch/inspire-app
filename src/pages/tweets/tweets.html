@@ -17,7 +17,7 @@
         <ng-template ngFor let-item [ngForOf]="items">
             <ion-item *ngIf="item.entities.urls.length==0">
                 <img *ngIf="objectService.isObject(item.entities.media)" src="{{item.entities.media[0].media_url}}" imageViewer/>
-                <p *ngIf="!objectService.isObject(item.entities.media)" class="app-font-16" (click)="btnRedirect(item)">
+                <p *ngIf="!objectService.isObject(item.entities.media)" class="app-font-16" (click)="iab.create('https://twitter.com/'+item.user.screen_name+'/statuses/'+item.id_str)">
                     {{item.text}}
                 </p>
                 <p>

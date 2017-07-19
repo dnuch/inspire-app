@@ -11,6 +11,10 @@ export class SettingsPage {
     tumblrCategory: string;
     userQuote: string;
     userName: string;
+    redditOptions: Array<{ name: string, category: string }>;
+    tweetOptions: Array<{ name: string, category: string }>;
+    tumblrOptions: Array<{ name: string, category: string }>;
+    
     
     constructor(private navCtrl: NavController, private navParams: NavParams, private menuCtrl: MenuController) {
         this.getDefaults();
@@ -27,6 +31,9 @@ export class SettingsPage {
         this.redditCategory = this.navParams.get('redditCategory');
         this.tweetCategory = this.navParams.get('tweetCategory');
         this.tumblrCategory = this.navParams.get('tumblrCategory');
+        this.redditOptions = this.navParams.get('redditOptions');
+        this.tweetOptions = this.navParams.get('tweetOptions');
+        this.tumblrOptions = this.navParams.get('tumblrOptions');
     }
     
     saveDefaults() {

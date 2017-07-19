@@ -14,14 +14,9 @@ export class TumblrPage {
     items: any;
     tumblrCategory: string;
     limit: number;
-    browser: any;
     
     constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
-        if(localStorage.getItem('tumblrCategory') != null) {
-            this.tumblrCategory = localStorage.getItem('tumblrCategory');
-        } else {
-            this.tumblrCategory = 'quotemadness';
-        }
+        localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'quotemadness';
         
         this.getDefaults();
         
@@ -32,7 +27,6 @@ export class TumblrPage {
     }
     
     ionViewDidEnter() {
-        console.log(this.items);
         this.menuCtrl.enable(true, 'tumblrMenu');
     }
     
@@ -66,9 +60,5 @@ export class TumblrPage {
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);
-    }
-    
-    btnRedirect(item: any) {
-        this.browser = this.iab.create(item.post_url);
     }
 }

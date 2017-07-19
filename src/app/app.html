@@ -4,8 +4,7 @@
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('redditMenu:clicked', redditCategory)" [(ngModel)]="redditCategory" name="redditCategory">
-                <ion-option value="LifeProTips">Life Pro Tips</ion-option>
-                <ion-option value="GetMotivated">Get Motivated</ion-option>
+                <ion-option *ngFor="let option of redditOptions" value="{{option.category}}">{{option.name}}</ion-option>
             </ion-select>
         </ion-item>
         <button ion-item menuClose (click)="viewSettings()">
@@ -25,12 +24,7 @@
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory" name="tweetCategory">
-                <ion-option value="UpliftingQuotes">Uplifting Quotes</ion-option>
-                <ion-option value="DeepLifeQuotes">Deep Life Quotes</ion-option>
-                <ion-option value="Inspire_Us">Inspirational Quotes</ion-option>
-                <ion-option value="GreatestQuotes">Great Minds Quotes</ion-option>
-                <ion-option value="Quotes_Life">Life Quotes</ion-option>
-                <ion-option value="babycarebot">Reminders</ion-option>
+                <ion-option *ngFor="let option of tweetOptions" value="{{option.category}}">{{option.name}}</ion-option>
             </ion-select>
         </ion-item>
         <button ion-item menuClose (click)="viewSettings()">
@@ -50,9 +44,7 @@
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('tumblrMenu:clicked', tumblrCategory)" [(ngModel)]="tumblrCategory" name="tumblrCategory">
-                <ion-option value="quotemadness">Literature Quotes</ion-option>
-                <ion-option value="lifeofquotations.tumblr">Life Quotes</ion-option>
-                <ion-option value="personal-quotes">Personal Quotes</ion-option>
+                <ion-option *ngFor="let option of tumblrOptions" value="{{option.category}}">{{option.name}}</ion-option>
             </ion-select>
         </ion-item>
         <button ion-item menuClose (click)="viewSettings()">
