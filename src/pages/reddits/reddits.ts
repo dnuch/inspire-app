@@ -19,12 +19,12 @@ export class RedditsPage {
     constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, public redditService: RedditService, public objectService: ObjectService) {
         localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'LifeProTips';
         
-        this.getDefaults();
-        
         events.subscribe('redditMenu:clicked', (category) => {
             this.redditCategory = category;
             this.getDefaults();
         });
+        
+        this.getDefaults();
     }
     
     ionViewDidEnter() {

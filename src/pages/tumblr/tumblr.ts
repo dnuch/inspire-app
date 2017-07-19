@@ -18,12 +18,12 @@ export class TumblrPage {
     constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
         localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'quotemadness';
         
-        this.getDefaults();
-        
         events.subscribe('tumblrMenu:clicked', (blog) => {
             this.tumblrCategory = blog;
             this.getDefaults();
         });
+        
+        this.getDefaults();
     }
     
     ionViewDidEnter() {

@@ -12,6 +12,7 @@ import { TwitterProvider } from './services/twitter.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
+
 @Component({
     templateUrl: 'app.html',
     providers: [
@@ -78,13 +79,9 @@ export class MyApp {
     
     getDefaults() {
         localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'LifeProTips';
-        
         localStorage.getItem('tweetCategory') != null ? this.tweetCategory = localStorage.getItem('tweetCategory') : this.tweetCategory = 'UpliftingQuotes';
-        
         localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'quotemadness';
-        
         localStorage.getItem('quote') != null ? this.userQuote = localStorage.getItem('quote') : this.userQuote = 'The world is your oyster.';
-        
         localStorage.getItem('username') != null ? this.userName = localStorage.getItem('username') : this.userName = 'William Shakespeare';  
         
         this.redditOptions = [

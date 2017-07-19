@@ -13,7 +13,7 @@
     <ion-refresher (ionRefresh)="refreshTweets($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
-    <ion-list text-wrap>
+    <ion-list *ngIf="objectService.isObject(items)" text-wrap>
         <ng-template ngFor let-item [ngForOf]="items">
             <ion-item *ngIf="item.entities.urls.length==0">
                 <img *ngIf="objectService.isObject(item.entities.media)" src="{{item.entities.media[0].media_url}}" imageViewer/>
@@ -29,7 +29,19 @@
             </ion-item>
         </ng-template>
     </ion-list>
-    <ion-infinite-scroll (ionInfinite)="moreTweets($event)">
+    <ion-item *ngIf="!objectService.isObject(items)" text-wrap>
+        <p class="app-font-16" text-center>
+            No items to show :(
+            <br><br>
+            Data is required to run this app, or Twitter servers are down
+            <br><br>
+            Click to refresh
+        </p>
+        <p style="font-size:32px" text-center>
+            <ion-icon (click)="getDefaults()" name="refresh"></ion-icon>
+        </p>
+    </ion-item>
+    <ion-infinite-scroll *ngIf="objectService.isObject(items)" (ionInfinite)="moreTweets($event)">
         <ion-infinite-scroll-content loadingText="Loading Tweets..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

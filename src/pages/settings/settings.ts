@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams } from 'ionic-angular';
 @Component({
-    selector: 'settings',
     templateUrl: 'settings.html'
 })
 export class SettingsPage {
@@ -9,11 +8,12 @@ export class SettingsPage {
     redditCategory: string;
     tweetCategory: string;
     tumblrCategory: string;
-    userQuote: string;
-    userName: string;
     redditOptions: Array<{ name: string, category: string }>;
     tweetOptions: Array<{ name: string, category: string }>;
     tumblrOptions: Array<{ name: string, category: string }>;
+    
+    userQuote: string;
+    userName: string;
     
     
     constructor(private navCtrl: NavController, private navParams: NavParams, private menuCtrl: MenuController) {

@@ -15,6 +15,27 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.tabbar {
+	a.tab-button[aria-selected=true]:nth-of-type(1) {
+		color: #0084b4;
+		.tab-button-icon {
+			color: #0084b4;
+		}
+	}
+	a.tab-button[aria-selected=true]:nth-of-type(2) {
+		color: #0084b4;
+		.tab-button-icon {
+			color: #0084b4;
+		}
+	}
+	a.tab-button[aria-selected=true]:nth-of-type(3) {
+		color: #0084b4;
+		.tab-button-icon {
+			color: #0084b4;
+		}
+	}
+}
+
 // BEGIN HACK --------------------------------------------------------
 // I've copied this style from the iOS settings.  For some reason, the
 // Android defaults do not have a right arrow on active list items that

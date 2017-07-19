@@ -8,9 +8,9 @@ import { TumblrPage } from '../tumblr/tumblr';
 })
 export class TabsPage {
 
-    tab1Root: any = RedditsPage;
+    tab1Root: any = TumblrPage;
     tab2Root: any = TweetsPage;
-    tab3Root: any = TumblrPage;
+    tab3Root: any = RedditsPage;
 
     constructor() { }
 }

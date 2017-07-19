@@ -13,7 +13,7 @@
     <ion-refresher (ionRefresh)="refreshReddits($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
-    <ion-list text-wrap>
+    <ion-list *ngIf="objectService.isObject(items)" text-wrap>
         <ion-item *ngFor="let item of items" (click)="viewItem(item.data)">
             <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
                 <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].source.url}}"/>
@@ -34,7 +34,19 @@
             </p>
         </ion-item>
     </ion-list>
-    <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
+    <ion-item *ngIf="!objectService.isObject(items)" text-wrap>
+        <p class="app-font-16" text-center>
+            No items to show :(
+            <br><br>
+            Data is required to run this app, or Reddit servers are down
+            <br><br>
+            Click to refresh
+        </p>
+        <p style="font-size:32px" text-center>
+            <ion-icon (click)="getDefaults()" name="refresh"></ion-icon>
+        </p>
+    </ion-item>
+    <ion-infinite-scroll *ngIf="objectService.isObject(items)" (ionInfinite)="moreReddits($event)">
         <ion-infinite-scroll-content loadingText="Loading Reddits..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

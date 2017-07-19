@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MenuController } from 'ionic-angular';
 
 @Component({
-    selector: 'page-about',
     templateUrl: 'about.html'
 })
 export class AboutPage {

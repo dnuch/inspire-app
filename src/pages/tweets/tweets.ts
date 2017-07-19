@@ -22,6 +22,7 @@ export class TweetsPage {
             this.tweetCategory = category;
             this.getDefaults();
         });
+        
         this.getDefaults();
     }
     
