@@ -17,7 +17,7 @@ export class RedditsPage {
     redditCategory: string;
     
     constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, public redditService: RedditService, public objectService: ObjectService) {
-        localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'LifeProTips';
+        localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'GetMotivated';
         
         events.subscribe('redditMenu:clicked', (category) => {
             this.redditCategory = category;

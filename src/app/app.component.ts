@@ -36,6 +36,7 @@ export class MyApp {
     
     userQuote: string;
     userName: string;
+    date: string;
     
     constructor(private events: Events, private alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
@@ -45,7 +46,7 @@ export class MyApp {
             splashScreen.hide();
         });
         this.getDefaults();
-        this.presentQuote();
+        if((Date.now()-parseInt(this.date))/(1000*3600*24) >= 1) this.presentQuote();
     }
     
     presentQuote() {
@@ -54,6 +55,7 @@ export class MyApp {
             subTitle: '<br>— '+this.userName
         });
         alert.present();
+        localStorage.setItem('date', Date.now().toString());
     }
     
     changeCategory(menuClicked: string, menuCategory: string) {
@@ -77,64 +79,65 @@ export class MyApp {
         this.navCtrl.push(AboutPage);
     }
     
-    getDefaults() {
-        localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'LifeProTips';
-        localStorage.getItem('tweetCategory') != null ? this.tweetCategory = localStorage.getItem('tweetCategory') : this.tweetCategory = 'UpliftingQuotes';
-        localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'quotemadness';
-        localStorage.getItem('quote') != null ? this.userQuote = localStorage.getItem('quote') : this.userQuote = 'The world is your oyster.';
-        localStorage.getItem('username') != null ? this.userName = localStorage.getItem('username') : this.userName = 'William Shakespeare';  
-        
-        this.redditOptions = [
-            {
-                name: 'Life Pro Tips',
-                category: 'LifeProTips'
-            },
-            {
-                name: 'Get Motivated',
-                category: 'GetMotivated'
-            }
-        ];
-                
-        this.tweetOptions = [
-            {
-                name: 'Uplifting Quotes',
-                category: 'UpliftingQuotes'
-            },
-            {
-                name: 'Deep Life Quotes',
-                category: 'DeepLifeQuotes'
-            },
-            {
-                name: 'Inspirational Quotes',
-                category: 'Inspire_Us'
-            },
-            {
-                name: 'Great Minds Quotes',
-                category: 'GreatestQuotes'
-            },            
-            {
-                name: 'Life Quotes',
-                category: 'Quotes_Life'
-            },
-            {
-                name: 'Reminders',
-                category: 'babycarebot'
-            }
-        ];
-        
+    getDefaults() {        
         this.tumblrOptions = [
-            {
-                name: 'Literature Quotes',
-                category: 'quotemadness'
-            },            
-            {
+            {   //quotes
                 name: 'Life Quotes',
                 category: 'lifeofquotations.tumblr'
+            },            
+            {   //quotes
+                name: 'Literature Quotes',
+                category: 'quotemadness'
             },
-            {
+            {   //pictures
                 name: 'Personal Quotes',
                 category: 'personal-quotes'
             }
         ];
+        
+        this.tweetOptions = [
+            {   //quotes
+                name: 'Deep Life Quotes',
+                category: 'DeepLifeQuotes'
+            },
+            {   //quotes
+                name: 'Great Minds Quotes',
+                category: 'GreatestQuotes'
+            },
+            {   //pics + quotes
+                name: 'Inspirational Quotes',
+                category: 'Inspire_Us'
+            },
+            {   //pics + quotes
+                name: 'Life Quotes',
+                category: 'Quotes_Life'
+            },            
+            {   //reminders
+                name: 'Reminders',
+                category: 'babycarebot'
+            },
+            {   //quotes
+                name: 'Uplifting Quotes',
+                category: 'UpliftingQuotes'
+            }
+        ];
+        
+        this.redditOptions = [
+            {   //pics + desc.
+                name: 'Get Motivated',
+                category: 'GetMotivated'
+            },
+            {   //desc.
+                name: 'Life Pro Tips',
+                category: 'LifeProTips'
+            }
+        ];
+        
+        localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = this.redditOptions[0].category;
+        localStorage.getItem('tweetCategory') != null ? this.tweetCategory = localStorage.getItem('tweetCategory') : this.tweetCategory = this.tweetOptions[0].category;
+        localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = this.tumblrOptions[0].category;
+        localStorage.getItem('quote') != null ? this.userQuote = localStorage.getItem('quote') : this.userQuote = 'The world is your oyster.';
+        localStorage.getItem('username') != null ? this.userName = localStorage.getItem('username') : this.userName = 'William Shakespeare';
+        localStorage.getItem('date') != null ? this.date = localStorage.getItem('date') : this.date = '0';  
     }
 }

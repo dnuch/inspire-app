@@ -15,7 +15,7 @@
     </ion-refresher>
     <ion-list *ngIf="objectService.isObject(items)" text-wrap>
         <ion-item *ngFor="let item of items" (click)="viewItem(item.data)">
-            <ion-thumbnail *ngIf="item.data.thumbnail!='self'" item-left>
+            <ion-thumbnail *ngIf="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'" item-left>
                 <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].source.url}}"/>
                 <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" class="rounded-img" src="{{item.data.thumbnail}}" imageViewer="{{item.data.preview.images[0].variants.gif.source.url}}"/>
             </ion-thumbnail>
@@ -40,10 +40,7 @@
             <br><br>
             Data is required to run this app, or Reddit servers are down
             <br><br>
-            Click to refresh
-        </p>
-        <p style="font-size:32px" text-center>
-            <ion-icon (click)="getDefaults()" name="refresh"></ion-icon>
+            Pull to refresh
         </p>
     </ion-item>
     <ion-infinite-scroll *ngIf="objectService.isObject(items)" (ionInfinite)="moreReddits($event)">

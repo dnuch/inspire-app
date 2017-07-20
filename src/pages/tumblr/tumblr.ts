@@ -16,7 +16,7 @@ export class TumblrPage {
     limit: number;
     
     constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
-        localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'quotemadness';
+        localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'lifeofquotations.tumblr';
         
         events.subscribe('tumblrMenu:clicked', (blog) => {
             this.tumblrCategory = blog;

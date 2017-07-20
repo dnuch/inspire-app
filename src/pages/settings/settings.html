@@ -6,10 +6,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding-top>
     <form (submit)="saveDefaults()">
         <ion-list>
-            <ion-item-divider>Set Your Quote</ion-item-divider>
+            <ion-item-divider>Set Your Daily Reminder</ion-item-divider>
             <ion-item>
                 <ion-label stacked>Quote</ion-label>
                 <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
@@ -20,9 +20,9 @@
             </ion-item>
             <ion-item-divider>Set Default Categories</ion-item-divider>
             <ion-item>
-                <ion-label stacked>Reddit</ion-label>
-                <ion-select [(ngModel)]="redditCategory" name="redditCategory">
-                    <ion-option *ngFor="let option of redditOptions" value="{{option.category}}">{{option.name}}</ion-option>
+            <ion-label stacked>Tumblr</ion-label>
+                <ion-select [(ngModel)]="tumblrCategory" name="tumblrCategory">
+                    <ion-option *ngFor="let option of tumblrOptions" value="{{option.category}}">{{option.name}}</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
@@ -32,9 +32,9 @@
                 </ion-select>
             </ion-item>
             <ion-item>
-            <ion-label stacked>Tumblr</ion-label>
-                <ion-select [(ngModel)]="tumblrCategory" name="tumblrCategory">
-                    <ion-option *ngFor="let option of tumblrOptions" value="{{option.category}}">{{option.name}}</ion-option>
+                <ion-label stacked>Reddit</ion-label>
+                <ion-select [(ngModel)]="redditCategory" name="redditCategory">
+                    <ion-option *ngFor="let option of redditOptions" value="{{option.category}}">{{option.name}}</ion-option>
                 </ion-select>
             </ion-item>
             <button ion-button type="submit" block>Save</button>

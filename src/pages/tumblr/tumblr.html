@@ -31,10 +31,7 @@
             <br><br>
             Data is required to run this app, or Tumblr servers are down
             <br><br>
-            Click to refresh
-        </p>
-        <p style="font-size:32px" text-center>
-            <ion-icon (click)="getDefaults()" name="refresh"></ion-icon>
+            Pull to refresh
         </p>
     </ion-item>
     <ion-infinite-scroll *ngIf="objectService.isObject(items)" (ionInfinite)="morePosts($event)">

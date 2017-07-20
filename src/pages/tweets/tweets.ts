@@ -16,7 +16,7 @@ export class TweetsPage {
     limit: number;
     
     constructor(private events: Events, private menuCtrl: MenuController, public twitterProvider: TwitterProvider, public objectService: ObjectService, public iab: InAppBrowser) {
-        localStorage.getItem('tweetCategory') != null ? this.tweetCategory = localStorage.getItem('tweetCategory') : this.tweetCategory = 'UpliftingQuotes';
+        localStorage.getItem('tweetCategory') != null ? this.tweetCategory = localStorage.getItem('tweetCategory') : this.tweetCategory = 'DeepLifeQuotes';
         
         events.subscribe('tweetMenu:clicked', (category) => {
             this.tweetCategory = category;
@@ -40,7 +40,6 @@ export class TweetsPage {
     }
     
     refreshTweets(refresher: any) {
-        this.limit = 10;
         this.getTweets(this.tweetCategory, this.limit);
         setTimeout(() => {
             refresher.complete();
