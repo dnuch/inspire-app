@@ -46,16 +46,18 @@ export class MyApp {
             splashScreen.hide();
         });
         this.getDefaults();
-        if((Date.now()-parseInt(this.date))/(1000*3600*24) >= 1) this.presentQuote();
+        this.presentQuote();
     }
     
     presentQuote() {
-        let alert = this.alertCtrl.create({
-            title: this.userQuote,
-            subTitle: '<br>— '+this.userName
-        });
-        alert.present();
-        localStorage.setItem('date', Date.now().toString());
+        if((Date.now()-parseInt(this.date))/(1000*3600*24) >= 1) {
+            let alert = this.alertCtrl.create({
+                title: this.userQuote,
+                subTitle: '<br>— '+this.userName
+            });
+            alert.present();
+            localStorage.setItem('date', Date.now().toString());
+        }
     }
     
     changeCategory(menuClicked: string, menuCategory: string) {
