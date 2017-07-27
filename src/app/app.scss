@@ -23,11 +23,20 @@
 	}
 	a.tab-button[aria-selected=true] {
 		.tab-button-icon {
-			color: #87bd94;
+            //#87bd94
+			color: #49614a;
             opacity: 1;
 		}
 	}
 }
+
+.selectable {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
 
 // BEGIN HACK --------------------------------------------------------
 // I've copied this style from the iOS settings.  For some reason, the

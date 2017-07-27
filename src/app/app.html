@@ -1,6 +1,6 @@
 <ion-menu id="tumblrMenu" [content]="nav">
     <ion-list>
-        <ion-list-header>Tumblr</ion-list-header>
+        <ion-list-header>Tumblr — {{tumblrCategory}}</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('tumblrMenu:clicked', tumblrCategory)" [(ngModel)]="tumblrCategory" name="tumblrCategory">
@@ -20,7 +20,7 @@
 
 <ion-menu id="tweetMenu" [content]="nav">
     <ion-list>
-        <ion-list-header>Twitter</ion-list-header>
+        <ion-list-header>Twitter — @{{tweetCategory}}</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory" name="tweetCategory">
@@ -40,7 +40,7 @@
 
 <ion-menu id="redditMenu" [content]="nav">
     <ion-list>
-        <ion-list-header>Reddit</ion-list-header>
+        <ion-list-header>Reddit — /r/{{redditCategory}}</ion-list-header>
         <ion-item>
             <ion-label stacked>Category</ion-label>
             <ion-select menuClose (ionChange)="changeCategory('redditMenu:clicked', redditCategory)" [(ngModel)]="redditCategory" name="redditCategory">
@@ -53,7 +53,7 @@
         </button>
         <button ion-item menuClose (click)="viewAbout()" >
             <ion-icon name="information-circle"></ion-icon>
-              About
+             About
         </button>
     </ion-list>
 </ion-menu>

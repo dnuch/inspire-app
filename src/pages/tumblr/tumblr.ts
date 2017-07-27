@@ -28,6 +28,7 @@ export class TumblrPage {
     
     ionViewDidEnter() {
         this.menuCtrl.enable(true, 'tumblrMenu');
+        console.log(this.items);
     }
     
     getDefaults() {

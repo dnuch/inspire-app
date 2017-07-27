@@ -83,6 +83,11 @@ export class MyApp {
     
     getDefaults() {        
         this.tumblrOptions = [
+            {
+                //pics + quotes
+                name: 'Feel Inspired',
+                category: 'cwote.tumblr'
+            },
             {   //quotes
                 name: 'Life Quotes',
                 category: 'lifeofquotations.tumblr'

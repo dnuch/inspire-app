@@ -4,7 +4,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card class="selectable">
         <img *ngIf="item.thumbnail!='self' && !objectService.isObject(item.preview.images[0].variants.gif)" src="{{item.preview.images[0].source.url}}" imageViewer/>
         <img *ngIf="item.thumbnail!='self' && objectService.isObject(item.preview.images[0].variants.gif)" src="{{item.preview.images[0].variants.gif.source.url}}" imageViewer/>
         <ion-card-content>
@@ -12,31 +12,8 @@
                 {{item.title}}
             </ion-card-title>
             <ion-card-content>
-                {{item.selftext}}
+                {{item.selftext}}&nbsp;—&nbsp;{{item.author}}
             </ion-card-content>
-            <ion-list>
-                <ion-item>
-                    <ion-icon name="person" item-left></ion-icon>
-                    Author
-                    <ion-note item-right>
-                        {{item.author}}
-                    </ion-note>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="thumbs-up" item-left></ion-icon>
-                    Likes
-                    <ion-note item-right>
-                        {{item.score}}
-                    </ion-note>
-                </ion-item>
-                <ion-item>
-                    <ion-icon name="text" item-left></ion-icon>
-                    Comments
-                    <ion-note item-right>
-                        {{item.num_comments}}
-                    </ion-note>
-                </ion-item>
-            </ion-list>
             <button ion-button block (click)="iab.create('http://reddit.com'+item.permalink)">Website</button>
         </ion-card-content>
     </ion-card>

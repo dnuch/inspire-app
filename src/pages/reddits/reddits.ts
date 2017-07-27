@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Events, NavController, MenuController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { DetailsPage } from '../details/details';
 
@@ -16,7 +17,7 @@ export class RedditsPage {
     limit: number;
     redditCategory: string;
     
-    constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, public redditService: RedditService, public objectService: ObjectService) {
+    constructor(private events: Events, private menuCtrl: MenuController, private navCtrl: NavController, public redditService: RedditService, public objectService: ObjectService, public iab: InAppBrowser) {
         localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'GetMotivated';
         
         events.subscribe('redditMenu:clicked', (category) => {
@@ -29,6 +30,7 @@ export class RedditsPage {
     
     ionViewDidEnter() {
         this.menuCtrl.enable(true, 'redditMenu');
+        console.log(this.items);
     }
     
     getDefaults() {

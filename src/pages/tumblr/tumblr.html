@@ -13,10 +13,15 @@
     <ion-refresher (ionRefresh)="refreshBlog($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
-    <ion-list *ngIf="objectService.isObject(items)" text-wrap>
+    <ion-list class="selectable" *ngIf="objectService.isObject(items)" text-wrap>
         <ion-item *ngFor="let item of items">
-            <img *ngIf="objectService.isObject(item.photos)" src="{{item.photos[0].original_size.url}}" imageViewer/>
-            <p *ngIf="!objectService.isObject(item.photos)" class="app-font-16">
+            <ng-template [ngIf]="item.type == 'photo'">
+                <img *ngFor="let i of objectService.createRange(item.photos.length)" src="{{item.photos[i].original_size.url}}" imageViewer/>
+            </ng-template>
+            <p *ngIf="item.type == 'text'" class="app-font-16">
+                {{item.body}}
+            </p>
+            <p *ngIf="item.type == 'quote'" class="app-font-16">
                 {{item.text}}&nbsp;—&nbsp;{{item.source}}&nbsp;
             </p>
             <ion-row>

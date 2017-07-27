@@ -28,6 +28,7 @@ export class TweetsPage {
     
     ionViewDidEnter() {
         this.menuCtrl.enable(true, 'tweetMenu');
+        console.log(this.items);
     }
     
     getDefaults() {

@@ -13,7 +13,7 @@
     <ion-refresher (ionRefresh)="refreshTweets($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
-    <ion-list *ngIf="objectService.isObject(items)" text-wrap>
+    <ion-list class="selectable" *ngIf="objectService.isObject(items)" text-wrap>
         <ng-template ngFor let-item [ngForOf]="items">
             <ion-item *ngIf="item.entities.urls.length==0">
                 <img *ngIf="objectService.isObject(item.entities.media)" src="{{item.entities.media[0].media_url}}" imageViewer/>
