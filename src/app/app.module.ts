@@ -10,7 +10,6 @@ import { RedditsPage } from '../pages/reddits/reddits';
 import { TweetsPage } from '../pages/tweets/tweets';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
-import { DetailsPage } from '../pages/details/details';
 import { TumblrPage } from '../pages/tumblr/tumblr'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { TwitterService } from 'ng2-twitter';
+import { ExpandableComponent } from '../components/expandable/expandable';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ import { TwitterService } from 'ng2-twitter';
     RedditsPage,
     TumblrPage,
     TweetsPage,
-    DetailsPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    ExpandableComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +44,6 @@ import { TwitterService } from 'ng2-twitter';
     RedditsPage,
     TumblrPage,
     TweetsPage,
-    DetailsPage,
     SettingsPage,
     TabsPage
   ],

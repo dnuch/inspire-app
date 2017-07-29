@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Events, NavController, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-import { DetailsPage } from '../details/details';
-
 import { RedditService } from '../../app/services/reddit.service';
 import { ObjectService } from '../../app/services/object.service';
 
@@ -39,12 +37,23 @@ export class RedditsPage {
     }
     
     getPosts(category: string, limit: number) {
-        this.redditService.getPosts(category, limit).subscribe(response => this.items = response.data.children);
+        this.redditService.getPosts(category, limit).subscribe(response => { 
+            this.items = response.data.children;
+            
+            for (let i=0; i<this.items.length; i++)
+                if(this.items[i].data.selftext != '')
+                    this.items[i].expanded = false;
+        });
     }
     
-    viewItem(item: any) {
-        this.navCtrl.push(DetailsPage, {
-            item: item
+    expandItem(item){
+        this.items.map((listItem) => {
+            if(item == listItem)
+                listItem.expanded = !listItem.expanded;
+            else 
+                listItem.expanded = false;
+            
+            return listItem;
         });
     }
     

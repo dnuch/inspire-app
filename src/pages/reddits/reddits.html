@@ -39,7 +39,7 @@
                     </ion-col>
                 </ion-row>
             </ion-item>
-            <button ion-item *ngIf="item.data.selftext != ''" (click)="viewItem(item.data)">
+            <button ion-item *ngIf="item.data.selftext != ''" (click)="expandItem(item)">
                 <p class="app-font-16" padding-right>
                     {{item.data.title}}
                 </p>
@@ -47,16 +47,20 @@
                     <img *ngIf="item.data.thumbnail != 'self' && !objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer/>
                     <img *ngIf="item.data.thumbnail != 'self' && objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].variants.gif.source.url}}" imageViewer/>
                 </ng-template>
+                <expandable class="app-font-16" *ngIf="item.expanded" [expanded]="item.expanded">{{item.data.selftext}}&nbsp;—&nbsp;<ion-icon name="person"></ion-icon>&nbsp;{{item.data.author}}</expandable>
                 <ion-row>
                     <ion-col col-3>
                         <ion-icon name="thumbs-up">
                             {{item.data.score}}
                         </ion-icon>
                     </ion-col>
-                    <ion-col col-9>
+                    <ion-col col-8>
                          <ion-icon name="text">
                             {{item.data.num_comments}}
                         </ion-icon>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-icon name="open" (click)="iab.create('http://reddit.com'+item.data.permalink)"></ion-icon>
                     </ion-col>
                 </ion-row>
             </button>
