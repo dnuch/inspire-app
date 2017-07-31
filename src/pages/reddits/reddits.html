@@ -14,57 +14,43 @@
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
     <ion-list class="selectable" *ngIf="objectService.isObject(items)" text-wrap>
-        <ng-template ngFor let-item [ngForOf]="items">
-            <ion-item *ngIf="item.data.selftext == ''">
-                <p class="app-font-16">
-                    {{item.data.title}}
-                </p>
-                <ng-template [ngIf]="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'">
-                    <img *ngIf="item.data.thumbnail != 'self' && !objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer/>
-                    <img *ngIf="item.data.thumbnail != 'self' && objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].variants.gif.source.url}}" imageViewer/>
-                </ng-template>
-                <ion-row>
-                    <ion-col col-3>
-                        <ion-icon name="thumbs-up">
-                            {{item.data.score}}
-                        </ion-icon>
-                    </ion-col>
-                    <ion-col col-8>
-                        <ion-icon name="text">
-                            {{item.data.num_comments}}
-                        </ion-icon>
-                    </ion-col>
-                    <ion-col col-1>
-                        <ion-icon name="open" (click)="iab.create('http://reddit.com'+item.data.permalink)"></ion-icon>
-                    </ion-col>
-                </ion-row>
-            </ion-item>
-            <button ion-item *ngIf="item.data.selftext != ''" (click)="expandItem(item)">
-                <p class="app-font-16" padding-right>
-                    {{item.data.title}}
-                </p>
-                <ng-template [ngIf]="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'">
-                    <img *ngIf="item.data.thumbnail != 'self' && !objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer/>
-                    <img *ngIf="item.data.thumbnail != 'self' && objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].variants.gif.source.url}}" imageViewer/>
-                </ng-template>
-                <expandable class="app-font-16" *ngIf="item.expanded" [expanded]="item.expanded">{{item.data.selftext}}&nbsp;—&nbsp;<ion-icon name="person"></ion-icon>&nbsp;{{item.data.author}}</expandable>
-                <ion-row>
-                    <ion-col col-3>
-                        <ion-icon name="thumbs-up">
-                            {{item.data.score}}
-                        </ion-icon>
-                    </ion-col>
-                    <ion-col col-8>
-                         <ion-icon name="text">
-                            {{item.data.num_comments}}
-                        </ion-icon>
-                    </ion-col>
-                    <ion-col col-1>
-                        <ion-icon name="open" (click)="iab.create('http://reddit.com'+item.data.permalink)"></ion-icon>
-                    </ion-col>
-                </ion-row>
-            </button>
-        </ng-template>
+        <ion-item *ngFor="let item of items" (click)="expandItem(item)" >
+            <ion-row>
+                <ion-col col-11>
+                    <p class="app-font-16">
+                        {{item.data.title}}
+                    </p>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-icon *ngIf="item.data.selftext != ''" name="ios-arrow-down"></ion-icon>
+                </ion-col>
+            </ion-row>
+            <ng-template [ngIf]="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'">
+                <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer/>
+                <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].variants.gif.source.url}}" imageViewer/>
+            </ng-template>
+            <expandable class="app-font-16" *ngIf="item.expanded && item.data.selftext != ''" [expanded]="item.expanded">{{item.data.selftext}}</expandable>
+            <ion-row>
+                <ion-col col-3>
+                    <ion-icon name="thumbs-up">
+                        {{item.data.score}}
+                    </ion-icon>
+                </ion-col>
+                <ion-col col-3>
+                    <ion-icon name="text">
+                        {{item.data.num_comments}}
+                    </ion-icon>
+                </ion-col>
+                <ion-col col-5>
+                    <ion-icon name="person">
+                        {{item.data.author}}
+                    </ion-icon>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-icon name="open" (click)="iab.create('http://reddit.com'+item.data.permalink)"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-item>
     </ion-list>
     <ion-item *ngIf="!objectService.isObject(items)" text-wrap>
         <p class="app-font-16" text-center>
@@ -75,7 +61,7 @@
             Pull to refresh
         </p>
     </ion-item>
-    <ion-infinite-scroll *ngIf="objectService.isObject(items)" (ionInfinite)="moreReddits($event)">
+    <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
         <ion-infinite-scroll-content loadingText="Loading Reddits..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

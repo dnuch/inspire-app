@@ -12,6 +12,6 @@ export class ExpandableComponent {
     constructor(public renderer: Renderer) { }
  
     ngAfterViewInit(){
-        this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', 'auto');    
+        this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', 'auto');
     }
 }
