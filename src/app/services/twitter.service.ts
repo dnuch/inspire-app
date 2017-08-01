@@ -7,13 +7,14 @@ export class TwitterProvider {
     
     constructor(private twitterService: TwitterService) { }
     
-    getTweets(category: string, limit: number): any {
+    getTweets(category: string, limit: number, itemID: string): any {
         return this.twitterService.get (
             'https://api.twitter.com/1.1/statuses/user_timeline.json',
             {
                 screen_name: category,
                 include_rts: false,
                 exclude_replies: true,
+                max_id: itemID,
                 count: limit
             },
             {

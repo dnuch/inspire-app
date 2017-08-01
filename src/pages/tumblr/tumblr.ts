@@ -26,38 +26,28 @@ export class TumblrPage {
         this.getDefaults();
     }
     
-    ionViewDidEnter() {
+    ionViewWillEnter() {
         this.menuCtrl.enable(true, 'tumblrMenu');
         console.log(this.items);
     }
     
     getDefaults() {
         this.limit = 10;
-        this.getPosts(this.tumblrCategory, this.limit);
-    }
-    
-    getPosts(blog: string, limit: number) {
-        this.tumblrService.getPosts(blog, limit).subscribe(object => this.items = object.response.posts);
-    }
-    
-    addPosts(blog: string, limit: number) {
-        this.tumblrService.getPosts(blog, limit).subscribe(object => {
-            for(let i = 5; i > 0; i--)
-                this.items.push(object.response.posts[limit-i]);
-        });
+        this.tumblrService.getPosts(this.tumblrCategory, this.limit, true).subscribe(object => this.items = object.response.posts);
     }
     
     refreshBlog(refresher: any) {
-        this.limit = 10;
-        this.getPosts(this.tumblrCategory, this.limit-1);
+        this.getDefaults();
         setTimeout(() => {
             refresher.complete();
         }, 1000);
     }
     
     morePosts(infiniteScroll: any) {
-        this.limit <= 45 ? this.limit += 5 : this.limit = 5;
-        this.addPosts(this.tumblrCategory, this.limit);
+        this.tumblrService.getPosts(this.tumblrCategory, this.limit, false).subscribe(object => {
+            for(let i=0; i<object.response.posts.length; i++)
+                this.items.push(object.response.posts[i]);
+        });
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);

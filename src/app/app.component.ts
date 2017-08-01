@@ -130,6 +130,10 @@ export class MyApp {
         ];
         
         this.redditOptions = [
+            {
+                name: 'Earth Pictures',
+                category: 'EarthPorn'
+            },
             {   //pics + desc.
                 name: 'Get Motivated',
                 category: 'GetMotivated'
@@ -137,6 +141,14 @@ export class MyApp {
             {   //desc.
                 name: 'Life Pro Tips',
                 category: 'LifeProTips'
+            },
+            {
+                name: 'Pet Therapy',
+                category: 'aww'
+            },
+            {
+                name: 'Uplift Your Mood',
+                category: 'funny'
             }
         ];
         

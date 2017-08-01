@@ -26,30 +26,32 @@ export class TweetsPage {
         this.getDefaults();
     }
     
-    ionViewDidEnter() {
+    ionViewWillEnter() {
         this.menuCtrl.enable(true, 'tweetMenu');
         console.log(this.items);
     }
     
     getDefaults() {
         this.limit = 10;
-        this.getTweets(this.tweetCategory, this.limit);
-    }
-    
-    getTweets(category: string, limit: number) {
-        this.twitterProvider.getTweets(category, limit).subscribe(res => this.items = res);
+        //max_id of twitter post is 2^63-1 = 9223372036854775806
+        this.twitterProvider.getTweets(this.tweetCategory, this.limit, '9223372036854775806').subscribe(res => this.items = res);
     }
     
     refreshTweets(refresher: any) {
-        this.getTweets(this.tweetCategory, this.limit);
+        this.getDefaults();
         setTimeout(() => {
             refresher.complete();
         }, 1000);
     }
     
     moreTweets(infiniteScroll: any) {
-        this.limit += 5;
-        this.getTweets(this.tweetCategory, this.limit);
+        //subtract 1 from id string as max_id looks for posts less than or equal to original ID
+        let id : string = this.items[this.items.length-1].id_str.substring(0, 4)+(parseInt(this.items[this.items.length-1].id_str.substring(4, this.items[this.items.length-1].id_str.length))-1).toString();
+        
+        this.twitterProvider.getTweets(this.tweetCategory, this.limit, id).subscribe(res => {
+            for(let i=0; i<res.length; i++)
+                this.items.push(res[i]);
+        });
         setTimeout(() => {
             infiniteScroll.complete();
         }, 1000);
