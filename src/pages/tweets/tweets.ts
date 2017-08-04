@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Events, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, Events, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TwitterProvider } from '../../app/services/twitter.service';
@@ -11,6 +11,7 @@ import { ObjectService } from '../../app/services/object.service';
 })
 export class TweetsPage {
     
+    @ViewChild(Content) content: Content;
     tweetCategory: string;
     items: any;
     limit: number;
@@ -20,6 +21,7 @@ export class TweetsPage {
         
         events.subscribe('tweetMenu:clicked', (category) => {
             this.tweetCategory = category;
+            this.content.scrollToTop(0);
             this.getDefaults();
         });
         

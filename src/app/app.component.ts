@@ -142,10 +142,10 @@ export class MyApp {
                 name: 'Life Pro Tips',
                 category: 'LifeProTips'
             },
-            {
-                name: 'Pet Therapy',
-                category: 'aww'
-            },
+//            {
+//                name: 'Pet Therapy',
+//                category: 'aww'
+//            },
             {
                 name: 'Uplift Your Mood',
                 category: 'funny'

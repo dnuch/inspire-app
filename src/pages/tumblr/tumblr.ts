@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Events, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, Events, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TumblrService } from '../../app/services/tumblr.service';
@@ -11,6 +11,7 @@ import { ObjectService } from '../../app/services/object.service';
 })
 export class TumblrPage {
     
+    @ViewChild(Content) content: Content;
     items: any;
     tumblrCategory: string;
     limit: number;
@@ -20,6 +21,7 @@ export class TumblrPage {
         
         events.subscribe('tumblrMenu:clicked', (blog) => {
             this.tumblrCategory = blog;
+            this.content.scrollToTop(0);
             this.getDefaults();
         });
         

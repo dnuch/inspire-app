@@ -18,6 +18,9 @@
             <ion-row>
                 <ion-col col-11>
                     <p class="app-font-16">
+                        <ng-template [ngIf]="objectService.isObject(item.data.preview) && objectService.isObject(item.data.preview.images[0].variants.gif) && item.data.thumbnail!='self'">
+                            [GIF]&nbsp;
+                        </ng-template>
                         {{item.data.title}}
                     </p>
                 </ion-col>
@@ -27,23 +30,18 @@
             </ion-row>
             <ng-template [ngIf]="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'">
                 <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer/>
-                <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].variants.gif.source.url}}" imageViewer/>
+                <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer="{{item.data.preview.images[0].variants.gif.source.url}}"/>
             </ng-template>
-            <expandable class="app-font-16" *ngIf="item.expanded && item.data.selftext != ''" [expanded]="item.expanded">{{item.data.selftext}}</expandable>
+            <expandable class="app-font-16" *ngIf="item.expanded" [expanded]="item.expanded">{{item.data.selftext}}</expandable>
             <ion-row>
                 <ion-col col-3>
                     <ion-icon name="thumbs-up">
                         {{item.data.score}}
                     </ion-icon>
                 </ion-col>
-                <ion-col col-3>
+                <ion-col col-8>
                     <ion-icon name="text">
                         {{item.data.num_comments}}
-                    </ion-icon>
-                </ion-col>
-                <ion-col col-5>
-                    <ion-icon name="person">
-                        {{item.data.author}}
                     </ion-icon>
                 </ion-col>
                 <ion-col col-1>

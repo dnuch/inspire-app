@@ -43,7 +43,7 @@
             Pull to refresh
         </p>
     </ion-item>
-    <ion-infinite-scroll *ngIf="objectService.isObject(items)" (ionInfinite)="morePosts($event)">
+    <ion-infinite-scroll (ionInfinite)="morePosts($event)">
         <ion-infinite-scroll-content loadingText="Loading Posts..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

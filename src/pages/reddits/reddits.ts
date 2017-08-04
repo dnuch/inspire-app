@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Events, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, Events, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { RedditService } from '../../app/services/reddit.service';
@@ -11,6 +11,7 @@ import { ObjectService } from '../../app/services/object.service';
 })
 export class RedditsPage {
     
+    @ViewChild(Content) content: Content;
     items: any;
     limit: number;
     redditCategory: string;
@@ -20,6 +21,7 @@ export class RedditsPage {
 
         events.subscribe('redditMenu:clicked', (category) => {
             this.redditCategory = category;
+            this.content.scrollToTop(0);
             this.getDefaults();
         });
         
