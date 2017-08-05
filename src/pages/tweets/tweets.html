@@ -28,7 +28,7 @@
                         <ion-icon name="sync">&nbsp;{{item.retweet_count}}</ion-icon>
                     </ion-col>
                     <ion-col col-1>
-                        <ion-icon name="open" (click)="iab.create('https://twitter.com/'+item.user.screen_name+'/statuses/'+item.id_str)"></ion-icon>
+                        <ion-icon name="open" (click)="iab.create('https://twitter.com/'+item.user.screen_name+'/statuses/'+item.id_str, '_self', 'zoom=no')"></ion-icon>
                     </ion-col>
                 </ion-row>
             </ion-item>

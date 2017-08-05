@@ -45,12 +45,9 @@ export class TweetsPage {
             refresher.complete();
         }, 1000);
     }
-    
+
     moreTweets(infiniteScroll: any) {
-        //subtract 1 from id string as max_id looks for posts less than or equal to original ID
-        let id : string = this.items[this.items.length-1].id_str.substring(0, 4)+(parseInt(this.items[this.items.length-1].id_str.substring(4, this.items[this.items.length-1].id_str.length))-1).toString();
-        
-        this.twitterProvider.getTweets(this.tweetCategory, this.limit, id).subscribe(res => {
+        this.twitterProvider.getTweets(this.tweetCategory, this.limit, this.items[this.items.length-1].id_str).subscribe(res => {
             for(let i=0; i<res.length; i++)
                 this.items.push(res[i]);
         });

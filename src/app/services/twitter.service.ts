@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 import { TwitterService } from 'ng2-twitter';
 import 'rxjs/Rx';
 
+declare var require: any;
+var bigInt = require("big-integer");
+
 @Injectable()
 export class TwitterProvider {
-    
+
     constructor(private twitterService: TwitterService) { }
     
     getTweets(category: string, limit: number, itemID: string): any {
+        
         return this.twitterService.get (
             'https://api.twitter.com/1.1/statuses/user_timeline.json',
             {
                 screen_name: category,
                 include_rts: false,
                 exclude_replies: true,
-                max_id: itemID,
+                max_id: bigInt(itemID).minus(1).toString(),
                 count: limit
             },
             {

@@ -114,11 +114,7 @@ export class MyApp {
             {   //pics + quotes
                 name: 'Inspirational Quotes',
                 category: 'Inspire_Us'
-            },
-            {   //pics + quotes
-                name: 'Life Quotes',
-                category: 'Quotes_Life'
-            },            
+            },         
             {   //reminders
                 name: 'Reminders',
                 category: 'babycarebot'
