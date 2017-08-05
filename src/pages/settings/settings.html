@@ -10,11 +10,11 @@
     <form (submit)="saveDefaults()">
         <ion-list>
             <ion-item-divider>Set Your Daily Reminder</ion-item-divider>
-            <ion-item>
+            <ion-item no-lines>
                 <ion-label stacked>Quote</ion-label>
                 <ion-input [(ngModel)]="userQuote" name="userQuote"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item no-lines>
                 <ion-label stacked>Name</ion-label>
                 <ion-input [(ngModel)]="userName" name="userName"></ion-input>
             </ion-item>

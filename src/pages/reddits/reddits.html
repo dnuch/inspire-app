@@ -50,15 +50,17 @@
             </ion-row>
         </ion-item>
     </ion-list>
-    <ion-item *ngIf="!objectService.isObject(items)" text-wrap>
-        <p class="app-font-16" text-center>
-            No items to show :(
-            <br><br>
-            Data is required to run this app, or Reddit servers are down
-            <br><br>
-            Pull to refresh
-        </p>
-    </ion-item>
+    <ion-list *ngIf="!objectService.isObject(items)" text-wrap>
+        <ion-item text-center>
+            <div class="app-font-16">
+                No items to show :(
+                <br><br>
+                Data is required to run this app, or Reddit servers are down
+                <br><br>
+                Pull to refresh
+            </div>
+        </ion-item>
+    </ion-list>
     <ion-infinite-scroll (ionInfinite)="moreReddits($event)">
         <ion-infinite-scroll-content loadingText="Loading Reddits..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>

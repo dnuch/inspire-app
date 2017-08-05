@@ -37,6 +37,12 @@
     user-select: text;
 }
 
+.list-md .item-block {
+  border-bottom: 1px solid $list-md-border-color;
+}
+.list-md .item-block .item-inner {
+  border-bottom: 0;
+}
 
 // BEGIN HACK --------------------------------------------------------
 // I've copied this style from the iOS settings.  For some reason, the
