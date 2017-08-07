@@ -32,7 +32,7 @@
                 <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer/>
                 <img *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].source.url}}" imageViewer="{{item.data.preview.images[0].variants.gif.source.url}}"/>
             </ng-template>
-            <expandable class="app-font-16" *ngIf="item.expanded" [expanded]="item.expanded">{{item.data.selftext}}</expandable>
+            <expandable class="app-font-16" [expanded]="item.expanded">{{item.data.selftext}}</expandable>
             <ion-row>
                 <ion-col col-3>
                     <ion-icon name="thumbs-up">

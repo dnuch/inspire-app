@@ -1,8 +1,8 @@
 {
-    "name": "LifeTips",
+    "name": "inso",
     "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "author": "Danny Nuch",
+    "homepage": "http://nuch.io/",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
@@ -50,7 +50,7 @@
         "ionic": "3.7.0",
         "typescript": "2.3.3"
     },
-    "description": "An Ionic project",
+    "description": "Uplift your mood!",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},
