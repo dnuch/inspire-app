@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-
-import { RedditsPage } from '../reddits/reddits';
-import { TweetsPage } from '../tweets/tweets';
-import { TumblrPage } from '../tumblr/tumblr';
+import { IonicPage } from 'ionic-angular';
+@IonicPage()
 @Component({
     templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-    tab1Root: any = TumblrPage;
-    tab2Root: any = TweetsPage;
-    tab3Root: any = RedditsPage;
+    tab1Root: string = 'TumblrPage';
+    tab2Root: string = 'TwitterPage';
+    tab3Root: string = 'RedditPage';
 
     constructor() { }
 }

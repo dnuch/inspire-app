@@ -1,15 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Events, MenuController } from 'ionic-angular';
+import { Content, Events, IonicPage, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { RedditService } from '../../app/services/reddit.service';
 import { ObjectService } from '../../app/services/object.service';
 
+@IonicPage()
 @Component({
-    selector: 'reddits',
-    templateUrl: 'reddits.html'
+    selector: 'reddit',
+    templateUrl: 'reddit.html'
 })
-export class RedditsPage {
+export class RedditPage {
     
     @ViewChild(Content) content: Content;
     items: any;

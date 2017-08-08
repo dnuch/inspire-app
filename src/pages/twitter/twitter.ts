@@ -1,15 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Events, MenuController } from 'ionic-angular';
+import { Content, Events, IonicPage, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TwitterProvider } from '../../app/services/twitter.service';
 import { ObjectService } from '../../app/services/object.service';
 
+@IonicPage()
 @Component({
-  selector: 'tweets',
-  templateUrl: 'tweets.html'
+  selector: 'twitter',
+  templateUrl: 'twitter.html'
 })
-export class TweetsPage {
+export class TwitterPage {
     
     @ViewChild(Content) content: Content;
     tweetCategory: string;

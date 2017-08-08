@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Events, MenuController } from 'ionic-angular';
+import { Content, Events, IonicPage, MenuController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TumblrService } from '../../app/services/tumblr.service';
 import { ObjectService } from '../../app/services/object.service';
 
+@IonicPage()
 @Component({
     selector: 'tumblr',
     templateUrl: 'tumblr.html'

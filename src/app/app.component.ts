@@ -9,10 +9,6 @@ import { ObjectService } from './services/object.service';
 import { TumblrService } from './services/tumblr.service';
 import { TwitterProvider } from './services/twitter.service';
 
-import { TabsPage } from '../pages/tabs/tabs';
-import { AboutPage } from '../pages/about/about';
-import { SettingsPage } from '../pages/settings/settings';
-
 @Component({
     templateUrl: 'app.html',
     providers: [
@@ -25,7 +21,7 @@ import { SettingsPage } from '../pages/settings/settings';
 export class MyApp {
     
     @ViewChild('nav') navCtrl: any = NavController; 
-    rootPage: any = TabsPage;
+    rootPage: string = 'TabsPage';
     
     redditCategory: string;
     tweetCategory: string;
@@ -65,7 +61,7 @@ export class MyApp {
     }
     
     viewSettings() {
-        this.navCtrl.push(SettingsPage, {
+        this.navCtrl.push('SettingsPage', {
             quote: this.userQuote,
             username: this.userName,
             redditCategory: this.redditCategory,
@@ -78,7 +74,7 @@ export class MyApp {
     }
     
     viewAbout() {
-        this.navCtrl.push(AboutPage);
+        this.navCtrl.push('AboutPage');
     }
     
     getDefaults() {        

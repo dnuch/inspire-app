@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+
+@IonicPage()
 @Component({
     templateUrl: 'settings.html'
 })

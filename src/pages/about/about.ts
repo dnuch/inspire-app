@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuController } from 'ionic-angular';
+import { IonicPage, MenuController } from 'ionic-angular';
 
+@IonicPage()
 @Component({
     templateUrl: 'about.html'
 })
