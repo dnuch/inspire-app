@@ -17,6 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { TwitterService } from 'ng2-twitter';
+import { IonicImageLoader } from 'ionic-image-loader';
+
 import { ExpandableComponent } from '../components/expandable/expandable';
 
 @NgModule({
@@ -35,6 +37,7 @@ import { ExpandableComponent } from '../components/expandable/expandable';
     HttpModule,
     JsonpModule,
     IonicModule.forRoot(MyApp, {tabsPlacement: 'top'}),
+    IonicImageLoader.forRoot(),
     IonicImageViewerModule
   ],    
   bootstrap: [IonicApp],

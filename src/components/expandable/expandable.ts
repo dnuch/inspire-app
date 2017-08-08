@@ -12,7 +12,6 @@ export class ExpandableComponent {
     constructor(public renderer: Renderer) { }
     
     ngAfterViewInit() {
-        this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'visibility', 'hidden');
         this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', this.expandWrapper.nativeElement.scrollHeight+'px');
     }
 }
