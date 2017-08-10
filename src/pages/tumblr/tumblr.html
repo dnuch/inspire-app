@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
     <ion-navbar color="secondary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
@@ -8,8 +8,8 @@
         </ion-title>
     </ion-navbar>
 </ion-header>
- 
-<ion-content padding-top>
+
+<ion-content>
     <ion-refresher (ionRefresh)="refreshBlog($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
@@ -27,12 +27,12 @@
             <p *ngIf="item.type == 'quote'" class="app-font-16">
                 {{item.text}}&nbsp;—&nbsp;{{item.source}}&nbsp;
             </p>
-            <ion-row>
+            <ion-row class="app-font-14">
                 <ion-col col-11>
                     <ion-icon name="text">&nbsp;{{item.note_count}}</ion-icon>
                 </ion-col>
                 <ion-col col-1>
-                    <ion-icon name="open" (click)="iab.create(item.post_url, '_self', 'zoom=no')"></ion-icon>
+                    <ion-icon name="md-open" (click)="iab.create(item.post_url, '_self', 'zoom=no')"></ion-icon>
                 </ion-col>
             </ion-row>
         </ion-item>

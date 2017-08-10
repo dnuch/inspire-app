@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Events, IonicPage, MenuController } from 'ionic-angular';
+import { Content, Events, IonicPage, MenuController, Platform } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TumblrService } from '../../app/services/tumblr.service';
@@ -17,7 +17,7 @@ export class TumblrPage {
     tumblrCategory: string;
     limit: number;
     
-    constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
+    constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser, public platform: Platform) {
         localStorage.getItem('tumblrCategory') != null ? this.tumblrCategory = localStorage.getItem('tumblrCategory') : this.tumblrCategory = 'lifeofquotations.tumblr';
         
         events.subscribe('tumblrMenu:clicked', (blog) => {

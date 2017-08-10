@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
     <ion-navbar color="secondary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
@@ -6,10 +6,10 @@
         <ion-title>
             Reddit
         </ion-title>
-    </ion-navbar>   
+    </ion-navbar>
 </ion-header>
- 
-<ion-content padding-top>
+
+<ion-content>
     <ion-refresher (ionRefresh)="refreshReddits($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
@@ -30,19 +30,19 @@
                 <img-loader *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)" src="{{item.data.preview.images[0].variants.gif.source.url}}" useImg></img-loader>
             </ng-template>
             <expandable class="app-font-16" [expanded]="item.expanded">{{item.data.selftext}}</expandable>
-            <ion-row>
-                <ion-col col-3>
-                    <ion-icon name="thumbs-up">
+            <ion-row class="app-font-14">
+                <ion-col col-4>
+                    <ion-icon name="md-thumbs-up">
                         {{item.data.score}}
                     </ion-icon>
                 </ion-col>
-                <ion-col col-8>
+                <ion-col col-7>
                     <ion-icon name="text">
                         {{item.data.num_comments}}
                     </ion-icon>
                 </ion-col>
                 <ion-col col-1>
-                    <ion-icon name="open" (click)="iab.create('http://reddit.com'+item.data.permalink, '_self', 'zoom=no')"></ion-icon>
+                    <ion-icon name="md-open" (click)="iab.create('http://reddit.com'+item.data.permalink, '_self', 'zoom=no')"></ion-icon>
                 </ion-col>
             </ion-row>
         </ion-item>

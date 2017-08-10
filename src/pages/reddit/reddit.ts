@@ -11,12 +11,12 @@ import { ObjectService } from '../../app/services/object.service';
     templateUrl: 'reddit.html'
 })
 export class RedditPage {
-    
+
     @ViewChild(Content) content: Content;
     items: any;
     limit: number;
     redditCategory: string;
-    
+
     constructor(private events: Events, private menuCtrl: MenuController, public redditService: RedditService, public objectService: ObjectService, public iab: InAppBrowser) {
         localStorage.getItem('redditCategory') != null ? this.redditCategory = localStorage.getItem('redditCategory') : this.redditCategory = 'GetMotivated';
 
@@ -25,45 +25,45 @@ export class RedditPage {
             this.content.scrollToTop(0);
             this.getDefaults();
         });
-        
+
         this.getDefaults();
     }
-    
+
     ionViewWillEnter() {
         this.menuCtrl.enable(true, 'redditMenu');
         console.log(this.items);
     }
-    
+
     getDefaults() {
         this.limit = 10;
         this.redditService.getPosts(this.redditCategory, this.limit, '').subscribe(response => {
             this.items = response.data.children;
-            
+
             for (let i=0; i<this.items.length; i++)
                 if(this.items[i].data.selftext != '')
                     this.items[i].expanded = false;
             });
     }
-    
+
     expandItem(item): any {
         if(item.data.selftext != '') {
             this.items.map((listItem) => {
                 if(item == listItem)
                     listItem.expanded = !listItem.expanded;
-                else 
+                else
                     listItem.expanded = false;
                 return listItem;
             });
         }
     }
-    
+
     refreshReddits(refresher: any) {
         this.getDefaults();
         setTimeout(() => {
             refresher.complete();
         }, 1000);
     }
-    
+
     moreReddits(infiniteScroll: any) {
         this.redditService.getPosts(this.redditCategory, this.limit, this.items[this.items.length-1].data.name).subscribe(response => {
             for(let i=0; i<response.data.children.length; i++) {

@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding-top>
+<ion-content>
     <form (submit)="saveDefaults()">
         <ion-list>
             <ion-item-divider>Set Your Daily Reminder</ion-item-divider>
@@ -37,7 +37,9 @@
                     <ion-option *ngFor="let option of redditOptions" value="{{option.category}}">{{option.name}}</ion-option>
                 </ion-select>
             </ion-item>
-            <button ion-button type="submit" block>Save</button>
+            <div padding>
+                <button ion-button block>Save</button>
+            </div>
         </ion-list>
     </form>
 </ion-content>

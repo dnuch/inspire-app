@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
     <ion-navbar color="secondary">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
@@ -9,7 +9,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding-top>
+<ion-content>
     <ion-refresher (ionRefresh)="refreshTweets($event)">
         <ion-refresher-content pullingText="Pull to refresh" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
@@ -20,15 +20,15 @@
                 <p *ngIf="!objectService.isObject(item.entities.media)" class="app-font-16">
                     {{item.text}}
                 </p>
-                <ion-row>
-                    <ion-col col-3>
-                        <ion-icon name="heart">&nbsp;{{item.favorite_count}}</ion-icon>
+                <ion-row class="app-font-14">
+                    <ion-col col-4>
+                        <ion-icon name="md-heart">&nbsp;{{item.favorite_count}}</ion-icon>
                     </ion-col>
-                    <ion-col col-8>
-                        <ion-icon name="sync">&nbsp;{{item.retweet_count}}</ion-icon>
+                    <ion-col col-7>
+                        <ion-icon name="md-sync">&nbsp;{{item.retweet_count}}</ion-icon>
                     </ion-col>
                     <ion-col col-1>
-                        <ion-icon name="open" (click)="iab.create('https://twitter.com/'+item.user.screen_name+'/statuses/'+item.id_str, '_self', 'zoom=no')"></ion-icon>
+                        <ion-icon name="md-open" (click)="iab.create('https://twitter.com/'+item.user.screen_name+'/statuses/'+item.id_str, '_self', 'zoom=no')"></ion-icon>
                     </ion-col>
                 </ion-row>
             </ion-item>

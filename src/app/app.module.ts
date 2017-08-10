@@ -20,7 +20,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     BrowserModule,
     HttpModule,
     JsonpModule,
-    IonicModule.forRoot(MyApp, {tabsPlacement: 'top'}),
+    IonicModule.forRoot(MyApp, ({tabsPlacement: 'top'})),
     IonicImageLoader.forRoot(),
     IonicImageViewerModule
   ],    
