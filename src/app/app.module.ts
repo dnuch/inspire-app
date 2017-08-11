@@ -20,10 +20,10 @@ import { IonicImageLoader } from 'ionic-image-loader';
     BrowserModule,
     HttpModule,
     JsonpModule,
-    IonicModule.forRoot(MyApp, ({tabsPlacement: 'top'})),
+    IonicModule.forRoot(MyApp, {tabsPlacement: 'top'}),
     IonicImageLoader.forRoot(),
     IonicImageViewerModule
-  ],    
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
@@ -36,4 +36,5 @@ import { IonicImageLoader } from 'ionic-image-loader';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

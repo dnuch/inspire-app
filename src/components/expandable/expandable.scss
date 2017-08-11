@@ -1,14 +1,14 @@
 expandable {
-    .expand-wrapper {
-        transition: 0.3s linear;
-    }   
- 
-    .collapsed {
-        visibility: hidden !important;
-        height: 0 !important;
-    }
- 
-    .visibility {
-        visibility: visible !important;
-    }
+  .expand-wrapper {
+    transition: 0.3s linear;
+  }
+
+  .collapsed {
+    visibility: hidden !important;
+    height: 0 !important;
+  }
+
+  .visibility {
+    visibility: visible !important;
+  }
 }

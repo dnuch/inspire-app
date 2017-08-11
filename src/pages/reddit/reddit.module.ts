@@ -6,17 +6,18 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
-    declarations: [
-        RedditPage
-    ],
-    imports: [
-        IonicPageModule.forChild(RedditPage),
-        ExpandableModule,
-        IonicImageLoader,
-        IonicImageViewerModule
-    ],
-    exports: [
-        RedditPage
-    ]
+  declarations: [
+    RedditPage
+  ],
+  imports: [
+    IonicPageModule.forChild(RedditPage),
+    ExpandableModule,
+    IonicImageLoader,
+    IonicImageViewerModule
+  ],
+  exports: [
+    RedditPage
+  ]
 })
-export class RedditModule { }
+export class RedditModule {
+}

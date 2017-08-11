@@ -1,58 +1,61 @@
 <ion-menu id="tumblrMenu" [content]="nav">
-    <ion-list>
-        <ion-list-header mode="md" padding-top>Tumblr — {{tumblrCategory}}</ion-list-header>
-        <ion-item>
-            <ion-label stacked>Category</ion-label>
-            <ion-select menuClose (ionChange)="changeCategory('tumblrMenu:clicked', tumblrCategory)" [(ngModel)]="tumblrCategory" name="tumblrCategory">
-                <ion-option *ngFor="let option of tumblrOptions" value="{{option.category}}">{{option.name}}</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item-divider></ion-item-divider>
-        <button ion-item menuClose (click)="viewSettings()">
-          Settings
-        </button>
-        <button ion-item menuClose (click)="viewAbout()">
-          About
-        </button>
-    </ion-list>
+  <ion-list>
+    <ion-list-header mode="md" padding-top>Tumblr — {{tumblrCategory}}</ion-list-header>
+    <ion-item>
+      <ion-label stacked>Category</ion-label>
+      <ion-select menuClose (ionChange)="changeCategory('tumblrMenu:clicked', tumblrCategory)"
+                  [(ngModel)]="tumblrCategory" name="tumblrCategory">
+        <ion-option *ngFor="let option of tumblrOptions" value="{{option.category}}">{{option.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider></ion-item-divider>
+    <button ion-item menuClose (click)="viewSettings()">
+      Settings
+    </button>
+    <button ion-item menuClose (click)="viewAbout()">
+      About
+    </button>
+  </ion-list>
 </ion-menu>
 
 <ion-menu id="tweetMenu" [content]="nav">
-    <ion-list>
-        <ion-list-header mode="md" padding-top>Twitter — @{{tweetCategory}}</ion-list-header>
-        <ion-item>
-            <ion-label stacked>Category</ion-label>
-            <ion-select menuClose (ionChange)="changeCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory" name="tweetCategory">
-                <ion-option *ngFor="let option of tweetOptions" value="{{option.category}}">{{option.name}}</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item-divider></ion-item-divider>
-        <button ion-item menuClose (click)="viewSettings()">
-          Settings
-        </button>
-        <button ion-item menuClose (click)="viewAbout()">
-          About
-        </button>
-    </ion-list>
+  <ion-list>
+    <ion-list-header mode="md" padding-top>Twitter — @{{tweetCategory}}</ion-list-header>
+    <ion-item>
+      <ion-label stacked>Category</ion-label>
+      <ion-select menuClose (ionChange)="changeCategory('tweetMenu:clicked', tweetCategory)" [(ngModel)]="tweetCategory"
+                  name="tweetCategory">
+        <ion-option *ngFor="let option of tweetOptions" value="{{option.category}}">{{option.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider></ion-item-divider>
+    <button ion-item menuClose (click)="viewSettings()">
+      Settings
+    </button>
+    <button ion-item menuClose (click)="viewAbout()">
+      About
+    </button>
+  </ion-list>
 </ion-menu>
 
 <ion-menu id="redditMenu" [content]="nav">
-    <ion-list>
-        <ion-list-header mode="md" padding-top>Reddit — /r/{{redditCategory}}</ion-list-header>
-        <ion-item>
-            <ion-label stacked>Category</ion-label>
-            <ion-select menuClose (ionChange)="changeCategory('redditMenu:clicked', redditCategory)" [(ngModel)]="redditCategory" name="redditCategory">
-                <ion-option *ngFor="let option of redditOptions" value="{{option.category}}">{{option.name}}</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item-divider></ion-item-divider>
-        <button ion-item menuClose (click)="viewSettings()">
-          Settings
-        </button>
-        <button ion-item menuClose (click)="viewAbout()">
-          About
-        </button>
-    </ion-list>
+  <ion-list>
+    <ion-list-header mode="md" padding-top>Reddit — /r/{{redditCategory}}</ion-list-header>
+    <ion-item>
+      <ion-label stacked>Category</ion-label>
+      <ion-select menuClose (ionChange)="changeCategory('redditMenu:clicked', redditCategory)"
+                  [(ngModel)]="redditCategory" name="redditCategory">
+        <ion-option *ngFor="let option of redditOptions" value="{{option.category}}">{{option.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider></ion-item-divider>
+    <button ion-item menuClose (click)="viewSettings()">
+      Settings
+    </button>
+    <button ion-item menuClose (click)="viewAbout()">
+      About
+    </button>
+  </ion-list>
 </ion-menu>
 
 <ion-nav #nav [root]="rootPage"></ion-nav>
