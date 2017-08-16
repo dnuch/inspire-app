@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Events, IonicPage, MenuController } from 'ionic-angular';
+import { Content, Events, IonicPage, MenuController, Slides } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { RedditService } from '../../app/services/reddit.service';
@@ -13,17 +13,21 @@ import { ObjectService } from '../../app/services/object.service';
 export class RedditPage {
 
   @ViewChild(Content) content: Content;
+  @ViewChild(Slides) slides: Slides;
   items: any;
   limit: number;
   redditCategory: string;
+  mode: object;
 
   constructor(private events: Events, private menuCtrl: MenuController, public redditService: RedditService, public objectService: ObjectService, public iab: InAppBrowser) {
     this.getDefaults();
 
     events.subscribe('redditMenu:clicked', (category) => {
       this.redditCategory = category;
-      this.content.scrollToTop(0);
+      if(this.mode['type'] == 'list')
+        this.content.scrollToTop(0);
       this.getReddits();
+      this.resetSlides();
     });
   }
 
@@ -34,6 +38,12 @@ export class RedditPage {
 
   getDefaults() {
     this.limit = 10;
+
+    this.mode = {
+      type: 'list',
+      icon: 'ios-image'
+    };
+
     this.redditCategory = localStorage.getItem('redditCategory');
     this.getReddits();
   }
@@ -47,6 +57,34 @@ export class RedditPage {
           this.items[i].expanded = false;
     });
   }
+
+  addReddits() {
+    this.redditService.getPosts(this.redditCategory, this.limit, this.items[this.items.length - 1].data.name).subscribe(response => {
+      for (let i = 0; i < response.data.children.length; i++) {
+        this.items.push(response.data.children[i]);
+        if (this.items[this.items.length - response.data.children.length + i].data.selftext != '')
+          this.items[this.items.length - response.data.children.length + i].expanded = false;
+      }
+    });
+  }
+
+  toggleMode() {
+    this.mode['type'] == 'gallery' ? this.mode['type'] = 'list' : this.mode['type'] = 'gallery';
+    this.mode['icon'] == 'ios-list' ? this.mode['icon'] = 'ios-image' : this.mode['icon'] = 'ios-list';
+    if(this.mode['type'] == 'gallery')
+      this.slides.update();
+  }
+
+  addSlides() {
+    this.addReddits();
+    this.slides.update();
+  }
+
+  resetSlides() {
+    this.slides.update();
+    this.slides.slideTo(0);
+  }
+
   expandItem(item): any {
     if (item.data.selftext != '') {
       this.items.map((listItem) => {
@@ -61,19 +99,14 @@ export class RedditPage {
 
   refreshReddits(refresher: any) {
     this.getReddits();
+    this.resetSlides();
     setTimeout(() => {
       refresher.complete();
     }, 1000);
   }
 
-  moreReddits(infiniteScroll: any) {
-    this.redditService.getPosts(this.redditCategory, this.limit, this.items[this.items.length - 1].data.name).subscribe(response => {
-      for (let i = 0; i < response.data.children.length; i++) {
-        this.items.push(response.data.children[i]);
-        if (this.items[this.items.length - response.data.children.length + i].data.selftext != '')
-          this.items[this.items.length - response.data.children.length + i].expanded = false;
-      }
-    });
+  scroll(infiniteScroll: any) {
+    this.addReddits();
     setTimeout(() => {
       infiniteScroll.complete();
     }, 1000);
