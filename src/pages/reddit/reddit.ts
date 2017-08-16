@@ -76,8 +76,10 @@ export class RedditPage {
   }
 
   addSlides() {
-    this.addReddits();
-    this.slides.update();
+    if(this.slides.getActiveIndex() == Math.floor(this.slides.length()*.8)) {
+      this.addReddits();
+      this.slides.update();
+    }
   }
 
   resetSlides() {

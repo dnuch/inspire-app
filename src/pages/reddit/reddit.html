@@ -57,19 +57,19 @@
     </ion-item>
   </ion-list>
 
-  <ion-slides (ionSlideReachEnd)="addSlides()" [hidden]="mode.type == 'list'" centeredSlides="true">
+  <ion-slides (ionSlideNextStart)="addSlides()" [hidden]="mode.type == 'list'" centeredSlides="true">
     <ng-template ngFor let-item [ngForOf]="items">
-      <div *ngIf="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'">
+      <ng-template [ngIf]="objectService.isObject(item.data.preview) && item.data.thumbnail!='self'">
         <ion-slide>
           <img *ngIf="!objectService.isObject(item.data.preview.images[0].variants.gif)"
                src="{{item.data.preview.images[0].source.url}}" imageViewer/>
           <img-loader *ngIf="objectService.isObject(item.data.preview.images[0].variants.gif)"
                       src="{{item.data.preview.images[0].variants.gif.source.url}}" useImg></img-loader>
         </ion-slide>
-      </div>
+      </ng-template>
     </ng-template>
     <ion-slide>
-      <img src="../../assets/img/no-image.png"/>
+      <img src="assets/img/no-image.png"/>
     </ion-slide>
   </ion-slides>
 

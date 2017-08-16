@@ -67,8 +67,10 @@ export class TumblrPage {
   }
 
   addSlides() {
-    this.addPosts();
-    this.slides.update();
+    if(this.slides.getActiveIndex() == Math.floor(this.slides.length()*.8)) {
+      this.addPosts();
+      this.slides.update();
+    }
   }
 
   resetSlides() {

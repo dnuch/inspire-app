@@ -45,17 +45,17 @@
     </ion-item>
   </ion-list>
 
-  <ion-slides (ionSlideReachEnd)="addSlides()" [hidden]="mode.type == 'list'" centeredSlides="true">
+  <ion-slides (ionSlideNextStart)="addSlides()" [hidden]="mode.type == 'list'" centeredSlides="true">
     <ng-template ngFor let-item [ngForOf]="items">
-      <div *ngIf="item.type == 'photo' && item.photos.length != 0">
+      <ng-template [ngIf]="item.type == 'photo'">
         <ion-slide *ngFor="let i of objectService.createRange(item.photos.length)">
           <img src="{{item.photos[i].original_size.url}}"
                imageViewer/>
         </ion-slide>
-      </div>
+      </ng-template>
     </ng-template>
     <ion-slide>
-      <img src="../../assets/img/no-image.png"/>
+      <img src="assets/img/no-image.png"/>
     </ion-slide>
   </ion-slides>
 

@@ -18,8 +18,11 @@ export class ObjectService {
 
   createRange(length: number): Array<number> {
     let items: number[] = [];
-    for (let i = 0; i < length; i++)
-      items.push(i);
+    if(length)
+      for (let i = 0; i < length; i++)
+        items.push(i);
+    else
+      items.push(0);
     return items;
   }
 }
