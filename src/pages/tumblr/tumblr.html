@@ -20,29 +20,31 @@
   </ion-refresher>
 
   <ion-list [hidden]="mode.type == 'gallery'" class="selectable" *ngIf="objectService.isObject(items)" text-wrap>
-    <ion-item *ngFor="let item of items">
-      <ng-template [ngIf]="item.type == 'photo'">
-        <img *ngFor="let i of objectService.createRange(item.photos.length)" src="{{item.photos[i].original_size.url}}"
-             imageViewer/>
-      </ng-template>
-      <p *ngIf="item.type == 'text'" class="app-font-16">
-        {{item.body}}
-        <ng-template [ngIf]="item.body == ''">
-          {{item.summary}}
+    <ng-template ngFor let-item [ngForOf]="items">
+      <ion-item *ngIf="item.type == 'photo' || item.type == 'text' || item.type == 'quote'">
+        <ng-template [ngIf]="item.type == 'photo'">
+          <img *ngFor="let i of objectService.createRange(item.photos.length)" src="{{item.photos[i].original_size.url}}"
+               imageViewer/>
         </ng-template>
-      </p>
-      <p *ngIf="item.type == 'quote'" class="app-font-16">
-        {{item.text}}&nbsp;—&nbsp;{{item.source}}&nbsp;
-      </p>
-      <ion-row class="app-font-14">
-        <ion-col col-11>
-          <ion-icon name="text">&nbsp;{{item.note_count}}</ion-icon>
-        </ion-col>
-        <ion-col col-1>
-          <ion-icon name="md-open" (click)="iab.create(item.post_url, '_self', 'zoom=no')"></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-item>
+        <p *ngIf="item.type == 'text'" class="app-font-16">
+          {{item.body}}
+          <ng-template [ngIf]="item.body == ''">
+            {{item.summary}}
+          </ng-template>
+        </p>
+        <p *ngIf="item.type == 'quote'" class="app-font-16">
+          {{item.text}}&nbsp;—&nbsp;{{item.source}}&nbsp;
+        </p>
+        <ion-row class="app-font-14">
+          <ion-col col-11>
+            <ion-icon name="text">&nbsp;{{item.note_count}}</ion-icon>
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="md-open" (click)="iab.create(item.post_url, '_self', 'zoom=no')"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ng-template>
   </ion-list>
 
   <ion-slides (ionSlideNextStart)="addSlides()" [hidden]="mode.type == 'list'" centeredSlides="true">

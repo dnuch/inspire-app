@@ -1,6 +1,6 @@
 {
     "name": "Inso",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "author": "Danny Nuch",
     "homepage": "http://nuch.io/",
     "private": true,
@@ -30,6 +30,7 @@
         "apple": "0.0.0",
         "big-integer": "^1.6.23",
         "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-compat": "^1.0.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
@@ -70,7 +71,8 @@
             "cordova-plugin-file-transfer": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }

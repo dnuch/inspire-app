@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Events, AlertController, NavController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RedditService } from './services/reddit.service';
 import { ObjectService } from './services/object.service';
@@ -34,13 +33,9 @@ export class MyApp {
   userName: string;
   date: string;
 
-  constructor(private events: Events, private alertCtrl: AlertController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+  constructor(private events: Events, private alertCtrl: AlertController, private platform: Platform, private statusBar: StatusBar) {
+    platform.ready().then(() => statusBar.styleDefault());
+
     this.getDefaults();
     this.presentQuote();
   }

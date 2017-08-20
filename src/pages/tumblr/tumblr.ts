@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Content, Events, IonicPage, MenuController, Slides } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TumblrService } from '../../app/services/tumblr.service';
 import { ObjectService } from '../../app/services/object.service';
@@ -14,12 +15,13 @@ export class TumblrPage {
 
   @ViewChild(Content) content: Content;
   @ViewChild(Slides) slides: Slides;
+
   items: any;
   tumblrCategory: string;
   limit: number;
   mode: object;
 
-  constructor(private events: Events, private menuCtrl: MenuController, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
+  constructor(private events: Events, private menuCtrl: MenuController, private splashScreen: SplashScreen, private tumblrService: TumblrService, public objectService: ObjectService, public iab: InAppBrowser) {
     this.getDefaults();
 
     events.subscribe('tumblrMenu:clicked', (blog) => {
@@ -34,6 +36,10 @@ export class TumblrPage {
   ionViewWillEnter() {
     this.menuCtrl.enable(true, 'tumblrMenu');
     console.log(this.items);
+  }
+
+  ionViewDidLoad() {
+    this.splashScreen.hide();
   }
 
   getDefaults() {
