@@ -29,7 +29,7 @@ export class TwitterPage {
 
   ionViewWillEnter() {
     this.menuCtrl.enable(true, 'tweetMenu');
-    console.log(this.items);
+    //console.log(this.items);
   }
 
   getDefaults() {

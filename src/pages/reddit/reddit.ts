@@ -33,7 +33,7 @@ export class RedditPage {
 
   ionViewWillEnter() {
     this.menuCtrl.enable(true, 'redditMenu');
-    console.log(this.items);
+    //console.log(this.items);
   }
 
   getDefaults() {

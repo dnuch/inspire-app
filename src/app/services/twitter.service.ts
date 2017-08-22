@@ -8,7 +8,17 @@ let bigInt = require("big-integer");
 @Injectable()
 export class TwitterProvider {
 
-  constructor(private twitterService: TwitterService) { }
+  conKey: string;
+  conSecKey: string;
+  token: string;
+  tokenSec: string;
+
+  constructor(private twitterService: TwitterService) {
+    this.conKey    = 'pCCCP4wUA8TsIby8n6QbelEGG';
+    this.conSecKey = 'Yk0jdrmgzcns7z525FQP03TtnNs70EzhcEe5v99oWxjRLISLvX';
+    this.token     = '452959156-PlUSwqN7yVdnHvPwvF0k3ORj9N8bJLzOms52boNB';
+    this.tokenSec  = 'lAEFJ0xJ1ji3SRLk6rPovtnCT77jNrb1UF8a6EzIMYyie';
+  }
 
   getTweets(category: string, limit: number, itemID: string): any {
     return this.twitterService.get(
@@ -21,12 +31,12 @@ export class TwitterProvider {
         count: limit
       },
       {
-        consumerKey: 'pCCCP4wUA8TsIby8n6QbelEGG',
-        consumerSecret: 'Yk0jdrmgzcns7z525FQP03TtnNs70EzhcEe5v99oWxjRLISLvX'
+        consumerKey: this.conKey,
+        consumerSecret: this.conSecKey
       },
       {
-        token: '452959156-PlUSwqN7yVdnHvPwvF0k3ORj9N8bJLzOms52boNB',
-        tokenSecret: 'lAEFJ0xJ1ji3SRLk6rPovtnCT77jNrb1UF8a6EzIMYyie'
+        token: this.token,
+        tokenSecret: this.tokenSec
       }
     ).map(res => res.json());
   }
