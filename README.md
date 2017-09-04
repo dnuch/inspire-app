@@ -1,26 +1,16 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+Built with Ionic Framework(HTML, AngularJS, CSS, TypeScript, JavaScript)
 
-## How to use this template
+Inso:  Daily Quotes and Reminders
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+This application provides for a variety of modern uplifting, inspirational, and motivational quotes through three different sources of social media (Reddit, Tumblr, Twitter).  User's may also use this application for inspiring tips written by real individuals.  The sources are constantly updating with new information daily.  
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+*This application has list and grid features.
 
-### With the Ionic CLI:
+*Daily reminders and default categories may be set in the settings which appear once a day.
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
-```
-
-Then, to run it, cd into `myTabs` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+-- Work in Progress -- 
+-> video handling
+-> on hold copy image
+-> timestamps on items
+-> share button
+-> home page and user with saved items(slide item left to show heart, save button)
