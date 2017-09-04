@@ -1,4 +1,4 @@
-Built with Ionic Framework(HTML, AngularJS, CSS, TypeScript, JavaScript)
+Built with Ionic Framework(HTML5, AngularJS, CSS, TypeScript, JavaScript)
 
 Inso:  Daily Quotes and Reminders
 
@@ -8,9 +8,9 @@ This application provides for a variety of modern uplifting, inspirational, and 
 
 *Daily reminders and default categories may be set in the settings which appear once a day.
 
--- Work in Progress -- 
--> video handling
--> on hold copy image
--> timestamps on items
--> share button
--> home page and user with saved items(slide item left to show heart, save button)
+-- Work in Progress -- <br />
+-> video handling <br />
+-> on hold copy image <br />
+-> timestamps on items <br />
+-> share button <br />
+-> home page and user with saved items(slide item left to show heart, save button) <br />
